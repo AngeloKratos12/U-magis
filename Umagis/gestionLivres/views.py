@@ -29,6 +29,7 @@ def borrow(request):
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
         if request.method == 'POST':
+            
 
             return HttpResponse('YES')
 

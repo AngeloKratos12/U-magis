@@ -5,21 +5,65 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>U-magis</title>
+    <style>
+                    .header {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 20px 10px;
+            font-weight: bold;
+            }
+
+            .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px; 
+            line-height: 25px;
+            border-radius: 4px;
+            }
+
+            .header a.logo {
+            font-size: 25px;
+            font-weight: bold;
+            }
+
+            .header a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+            .header-right {
+            float: right;
+            }
+
+            @media screen and (max-width: 500px) {
+            .header a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            
+            .header-right {
+                float: none;
+            }
+            }
+
+    </style>
 </head>
 <body>
     <header>
-        <h2> {% block title %} {% endblock %} </h2>
-        <div class="fixed-header">
-            <div class="container" style="font-weight: bold;">
-                <nav style="float: right; ">
-                    {% block home %}{% endblock %}
-                    <a href="http://127.0.0.1:8000/biblio/" style="margin-right: 10px; margin-left: 10px;"> {% block bibliotheque %} {% endblock %} </a>
-                    <a href="http://127.0.0.1:8000/student/" style="margin-right: 10px; margin-left: 10px"> {% block portfolio %} {% endblock %} </a>
-                    <a href="http://127.0.0.1:8000/discu/" style="margin-right: 10px; margin-left: 10px"> {% block discu %} {% endblock %} </a>
-                     {% block connexion %} {% endblock %} 
-                    
-                    
-                </nav>
+
+        <div class="header">
+            <a href="#default" class="logo">U-magis</a>
+            <div class="header-right">
+                {% block home %} {% endblock %}
+                
+                <a href="http://127.0.0.1:8000/biblio/">{% block bibliotheque %} {% endblock %}</a>
+                <a href="http://127.0.0.1:8000/student/">{% block portfolio %} {% endblock %} </a>
+                <a href="http://127.0.0.1:8000/discu/">{% block discu %} {% endblock %} </a>
+                 {% block connexion %} {% endblock %}
             </div>
         </div>    
 

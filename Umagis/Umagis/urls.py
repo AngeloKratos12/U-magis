@@ -18,14 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('home/', views.home2, name='home2'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
-    path('verify/', views.verify, name='verify'),
+    path('acceuil/', views.verify, name='verify'),
     path('biblio/', include('gestionLivres.urls')),
     path('bibliotheque/', include('bibliotheque.urls')),
+    path('student/', include('Users.urls')),
 
 ]
