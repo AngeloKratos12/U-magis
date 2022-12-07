@@ -1,0 +1,58 @@
+{% extends "baseheader.html" %}
+
+{% block title %} U-Magis {% endblock %}
+{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="color: rgb(236, 112, 11);"> <u>HOME</u> </a> {% endblock %}
+{% block portfolio %} THE STUDENTS {% endblock %} 
+{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
+{% block bibliotheque %} BIBLIOTHEQUE {% endblock %}
+{% block discu %} DISCU {% endblock %}
+
+{% block body %} 
+        <h1>Add Book</h1> <br>
+        <form action="http://127.0.0.1:8000/bibliotheque/" method="post"> {% csrf_token %}
+
+            <div>
+                <label for="numero">N°:</label>
+                <input type="text" name="numero" required> <br><br>
+    
+                <label for="auteur">Auteur:</label>
+                <input type="text" name="auteur"> <br> <br>
+    
+                <label for="titre">Titre:</label>
+                <input type="text" name="titre" required> <br> <br>
+    
+                <label for="edition">Editon:</label>
+                <input type="text" name="edition" > <br> <br>
+    
+                <label for="annee">Année:</label>
+                <input type="text" name="annee"> <br> <br>
+    
+                <label for="lieu">Lieu:</label>
+                <input type="text" name="lieu"> <br> <br>
+    
+                <label for="cotation">Cotation:</label>
+                <input type="text" name="cotation" required> <br> <br>
+    
+                <label for="etat">ETAT:</label>
+                <select name="etat" id="etat">
+                    <option value="1">1</option>
+                    <option value="1">2</option>
+                    <option value="1">3</option>
+                </select><br>
+                
+                <label for="observation">Observation:</label>
+                <input type="text" name="observation"> <br> <br>
+    
+                <label for="categorie" >Catégorie:</label>
+                <input type="text" name="categorie" required> <br>
+    
+            </div> <br>
+            <div>
+                <Button type="submit">ADD</Button>
+            </div>
+
+        </form>
+        
+        
+        
+{% endblock %}

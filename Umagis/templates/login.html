@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGGING</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+        <header id="head" style="background-color: rgba(0, 0, 255, 0.123);">
+            <h3 style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ;"> U-magis_Biblio </h3>
+        </header>
+    
+        <div id="text" style="background-color: #261a1a63;">
+            <p class="text"> Facilitons votre étude.</p>
+        </div>
+    
+        <div id="boite_id" style=" color:black;">
+            <div>
+                <p>Bienvenue sur Umagis-Biblio</p>
+            </div>
+    
+            <form action="{% url 'verify' %}" method="post" id="store"> {% csrf_token %}
+    
+                <div>
+    
+                    <label for="nom">Matricule:</label> <br>
+                    <input type="text" id="matricule" name="matricule" placeholder="ex: ETS-1203"> <br>
+                    <br>
+                    <label for="password">Mots de pass: </label> <br>
+                    <div><input type="password" name="password" placeholder="ex: 1234"></div>
+    
+                </div>
+                
+            <div>
+                <br>
+                <Button type="submit">Se connecter</Button> 
+            </div>
+    
+            </form>
+        
+            
+            <div>
+                <br>
+                <a href="#"> Mots de pass oublier</a> <br>
+                <a href="http://0.0.0.0:1600/sign_up/"> Sing up</a>
+            </div>
+    
+        </div>
+    
+    
+    
+    
+</body>
+</html>

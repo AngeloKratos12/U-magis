@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>U-magis</title>
+</head>
+<body>
+    <header>
+        <h2> {% block title %} {% endblock %} </h2>
+        <div class="fixed-header">
+            <div class="container" style="font-weight: bold;">
+                <nav style="float: right; ">
+                    {% block home %}{% endblock %}
+                    <a href="http://127.0.0.1:8000/biblio/" style="margin-right: 10px; margin-left: 10px;"> {% block bibliotheque %} {% endblock %} </a>
+                    <a href="http://127.0.0.1:8000/student/" style="margin-right: 10px; margin-left: 10px"> {% block portfolio %} {% endblock %} </a>
+                    <a href="http://127.0.0.1:8000/discu/" style="margin-right: 10px; margin-left: 10px"> {% block discu %} {% endblock %} </a>
+                     {% block connexion %} {% endblock %} 
+                    
+                    
+                </nav>
+            </div>
+        </div>    
+
+    </header>
+
+    {% block body %}{% endblock %}
+        
+</body>
+</html>
