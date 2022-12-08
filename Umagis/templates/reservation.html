@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Reservez votre meilleur livre!!</h2>
-</body>
-</html>
+{% extends "baseheader.html" %}
+{% block home %}<a class="" href="http://127.0.0.1:8000/home/" style="background-color:dodgerblue; color:white;">Home</a> {% endblock %}
+{% block portfolio %} THE STUDENTS {% endblock %} 
+{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
+{% block bibliotheque %} BIBLIOTHEQUE {% endblock %}
+{% block discu %} DISCU {% endblock %}

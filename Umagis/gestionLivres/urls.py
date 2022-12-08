@@ -4,8 +4,8 @@ from . import views
 
 urlpatterns = [
 
-    path('', views.borrow, name='books'),
+    path('', views.biblio, name='books'),
     path('reservation/', views.makereservation, name='reservatioon'),
-    path('emprunte/', views.borrow, name='borrow'),
+    path('borrow/', views.borrow, name='borrow'),
 
 ]

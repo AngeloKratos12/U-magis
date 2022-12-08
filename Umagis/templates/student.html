@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="http://127.0.0.1:8000/student/info/" method="post"> {% csrf_token %}
+    <form action="http://127.0.0.1:8000/student/" method="post"> {% csrf_token %}
         <input type="text" name="name" value={{ name }} hidden>
+        <h2>{{ name }}</h2>
         <input type="submit" title="send">
     </form>
     
