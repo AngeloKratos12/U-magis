@@ -15,7 +15,11 @@ class Empruntes(models.Model):
     dateSortie = models.DateTimeField()
     dateEntre = models.DateTimeField()
     commentaire = models.TextField(blank=True)
+    
 
+#-------------------------------------------------------------------------------------
+    
+    
 #-------------------------------------------------------------------------------------
 
 class Reserves(models.Model):

@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from Users.models import Users
 from bibliotheque.models import Books
 from . import models
@@ -32,50 +32,70 @@ def biblio(request):
 
     else:
         return render(request, 'login.html')
-
-
-def makereservation(request):
-    if 'logged_user_id' in request.session:
-        logged_user_id = request.session['logged_user_id']
-        logged_user = Users.objects.get(id=logged_user_id)
     
-    return render(request, 'reservation.html')
-
 
 
 def borrow(request):
     '''
         Envoie des informations des livres dans la BD!!
     '''
-
     
-    
+    #if user have e session
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
+        
+        #if user pushed the submit button
         if request.method == 'POST':
             from datetime import datetime, timedelta
             
             idBook = request.POST['idBook']
             cotation = request.POST['cotation']
             commentaire = request.POST['commentaire']
-            
-            book = Books.objects.get(id=str(idBook))
-            categorie = book.categorie
-            titre = book.titre
-            dateSortie = datetime.now()
-            dateEntre = dateSortie + timedelta(days=14, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
-            print(dateEntre)
-            addbook = models.Empruntes(idBook=idBook, cotation=cotation, titre=titre, categorie=categorie,
-                                       idUser=logged_user_id, dateSortie=dateSortie, dateEntre=dateEntre,
-                                       commentaire=commentaire)
+    
+            if 'clicked_button' in request.POST:
+                print(request.POST['clicked_button'])
+                
+                ##If the user clicked the borrow Button
+                if  request.POST['clicked_button'] == 'Emprunter':
+                    book = Books.objects.get(id=idBook)
+                    categorie = book.categorie
+                    titre = book.titre
+                    dateSortie = datetime.now()
+                    dateEntre = dateSortie + timedelta(days=14, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)
+                    print(dateEntre)
+                    '''
+                        Envoie des informations vers la base de donnée
+                    '''
+                    addbook = models.Empruntes(idBook=idBook, cotation=cotation, titre=titre, categorie=categorie,
+                                            idUser=logged_user_id, dateSortie=dateSortie, dateEntre=dateEntre,
+                                            commentaire=commentaire)
+                
+                    addbook.save()
+                    
+                ##If the user clicked the reservatio button
+                elif request.POST['clicked_button'] == 'Reserver':
+                    book = Books.objects.get(id=idBook)
+                    titre = book.titre
+                    categorie = book.categorie
+                    bookEnCour = models.Empruntes.objects.get(id=idBook)
+                    idUserEnCour = bookEnCour.idUser
+                    
+                    ##send the information to database
+                    makereservation = models.Reserves(idBook=idBook, cotation=cotation,titre=titre,categorie=categorie,
+                                                    idUserEnAttent=logged_user_id, idUserEnCour=idUserEnCour, commentaire=commentaire)
+                    makereservation.save()
+                
+                else:
+                    pass
+                    
+            return redirect('books')
         
-            addbook.save()
-            return HttpResponse(cotation)
-
+        
         else:
-            return render(request, 'biblio.html')
+            return render('books')
 
+    #If user have not yet a compte
     else:
         return render(request, 'login.html')
     
@@ -83,12 +103,5 @@ def borrow(request):
     
     
     '''
-    idBook = models.IntegerField()
-    cotation = models.CharField(max_length=10)
-    titre = models.CharField(max_length=100)
-    categorie = models.CharField(max_length=50)
-    idUser = models.IntegerField()
-    dateSortie = models.DateTimeField()
-    dateEntre = models.DateTimeField()
-    commentaire = models.TextField(blank=True)
+   
     '''

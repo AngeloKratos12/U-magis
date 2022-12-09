@@ -13,24 +13,35 @@
 
             <h2> Bienvenue sur notre bibliotheque en ligne!! </h2> 
         </p>
-        {% for bookshow in listbook %}
-        <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
-            <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
-            <input type="text" name="cotation" value={{ bookshow.cotation }} hidden>
-            <input type="text" name="titre" value={{ bookshow.titre }} hidden>
-            
-            <ul>
-                <li>{{ bookshow.idBook }}</li>
-                <li>{{ bookshow.cotation }}</li>
-                <li>{{ bookshow.titre }}</li>
-                <li>Par {{ bookshow.auteur }}</li>
-            </ul>
-            <label for="commentaire">commentaire</label>
-            <input type="text" name="commentaire"> <br>
-            <input type="submit" value="Emprunter">
-            
-        </form>
-        {% endfor %}
+
+        <div>
+
+                {% for bookshow in listbook %}
+                <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
+
+                        <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
+                        <input type="text" name="cotation" value={{ bookshow.cotation }} hidden>
+                        <input type="text" name="titre" value={{ bookshow.titre }} hidden>
+                        
+                        <ul>
+                            <li>{{ bookshow.idBook }}</li>
+                            <li>{{ bookshow.cotation }}</li>
+                            <li>{{ bookshow.titre }}</li>
+                            <li>Par {{ bookshow.auteur }}</li>
+                        </ul>
+
+                        <label for="commentaire">commentaire</label>
+                        <input type="text" name="commentaire"> <br>
+                        
+                        <input type="submit" name="clicked_button" value="Emprunter">
+                        <input type="submit" name="clicked_button" value="Reserver">
+                        
+                </form>
+               
+                {% endfor %}
+
+        </div>
+        
         
         <div>
             <a href="http://127.0.0.1:8000/biblio/addbook/">ADD BOOK</a>

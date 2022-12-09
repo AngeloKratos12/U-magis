@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
 
     path('', views.biblio, name='books'),
-    path('reservation/', views.makereservation, name='reservatioon'),
     path('borrow/', views.borrow, name='borrow'),
 
 ]
