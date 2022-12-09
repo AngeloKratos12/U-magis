@@ -98,10 +98,19 @@ def borrow(request):
     #If user have not yet a compte
     else:
         return render(request, 'login.html')
-    
-    
-    
-    
+
+
+def admin(request):
     '''
-   
+        Hello guys
     '''
+    
+    if 'logged_user_id' in request.session:
+        logged_user_id = request.session['logged_user_id']
+        logged_user = Users.objects.get(id=logged_user_id)
+        book =models.Empruntes.objects.all()
+        #print(book)
+        
+      
+    return render(request, 'back_office.html', context={'book':book})
+    

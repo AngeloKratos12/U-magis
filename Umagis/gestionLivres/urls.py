@@ -6,5 +6,6 @@ urlpatterns = [
 
     path('', views.biblio, name='books'),
     path('borrow/', views.borrow, name='borrow'),
+    path('admin/', views.admin, name='admin')
 
 ]
