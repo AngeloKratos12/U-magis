@@ -1,12 +1,5 @@
 {% extends "baseheader.html" %}
 
-{% block title %} U-Magis {% endblock %}
-{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="color: rgb(236, 112, 11);"> <u>HOME</u> </a> {% endblock %}
-{% block portfolio %} THE STUDENTS {% endblock %} 
-{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
-{% block bibliotheque %} BIBLIOTHEQUE {% endblock %}
-{% block discu %} DISCU {% endblock %}
-
 {% block body %} 
         <h1>Add Book</h1> <br>
         <form action="http://127.0.0.1:8000/bibliotheque/" method="post"> {% csrf_token %}

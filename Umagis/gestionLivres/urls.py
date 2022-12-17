@@ -6,6 +6,8 @@ urlpatterns = [
 
     path('', views.biblio, name='books'),
     path('borrow/', views.borrow, name='borrow'),
-    path('admin/', views.admin, name='admin')
+    path('reservation/', views.reservation, name='borrow'),
+    path('admin/', views.admin, name='admin'),
+    path('admin/addbook/', views.addBook, name='admin')
 
 ]

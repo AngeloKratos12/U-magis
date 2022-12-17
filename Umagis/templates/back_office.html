@@ -7,31 +7,61 @@
     <title>Emprunte</title>
 </head>
 <body>
+    <ul style="list-style: none;">
+        <div>
+        <ul style="list-style: none;">
+
+            <li><a href="#">EMPRUNTES</a></li>
+            <li><a href="http://127.0.0.1:8000/biblio/reservation">RESERVATION</a></li>
+            <li><a href="http://127.0.0.1:8000/biblio/admin/addbook/">ADD BOOK</a></li>
+            <li><a href="#">DELETE A BOOK</a></li>
+            
+        </ul>
+    </div>    
+    <div>
+        <form action="#" method="post"> {% csrf_token %}
+            <select name="select" id="select">
+                <option value="etudiant">Etudiant</option>
+                <option value="titre">Titre du livre</option>
+                <option value="cotation">Cotation</option>
+                <option value="auteur">Auteur</option>
+
+            </select>
+            <input type="text" name="rechercher">
+            <label for="rechercher"><input type="submit" value="rechercher"></label>
+        </form>
+        
+    </div> <br>
+
+    </ul>
+    
     <table border="1">
-      <tr>
-            <th>N°Livre</th>
-            <th>Cotation</th>
-            <th>Livre</th>
-            <th>Auteur</th>
-            <th>Etat</th>
-            <th>Catégorie</th>
-            <th>User</th>
-            <th>DateEmprunte</th>
-            <th>DateLivraison</th>
+      <tr>  
+            <th>{% block clo1 %}{% endblock %}</th>
+            <th>{% block clo2 %}{% endblock %}</th>
+            <th>{% block clo3 %}{% endblock %}</th>
+            <th>{% block clo4 %}{% endblock %}</th>
+            <th>{% block clo5 %}{% endblock %}</th>
+            <th>{% block clo6 %}{% endblock %}</th>
+            <th>{% block clo7 %}{% endblock %}</th>
+            <th>{% block clo8 %}{% endblock %}</th>
+            <th>{% block clo9 %}{% endblock %}</th>
+            
+            
       </tr>
     
         {% for index in book %}
             <tr>
-
-                <td>{{ index.idBook }}</td>
-                <td>{{ index.cotation}}</td>
-                <td>{{ index.titre}}</td>
-                <td>{{ index.cotation}}</td>
-                <td>{{ index.cotation}}</td>
-                <td>{{ index.cotation}}</td>
-                <td>{{ index.idUser}}</td>
-                <td>{{ index.cotation}}</td>
-                <td>{{ index.cotation}}</td>
+                <td>{% block valcol1 %}{% endblock %}</td>
+                <td>{% block valcol2 %}{% endblock %}</td>
+                <td>{% block valcol3 %}{% endblock %}</td>
+                <td>{% block valcol4 %}{% endblock %}</td>
+                <td>{% block valcol5 %}{% endblock %}</td>
+                <td>{% block valcol6 %}{% endblock %}</td>
+                <td>{% block valcol7 %}{% endblock %}</td>
+                <td>{% block valcol8 %}{% endblock %}</td>
+                <td>{% block valcol9 %}{% endblock %}</td>
+                
 
             </tr>
             
