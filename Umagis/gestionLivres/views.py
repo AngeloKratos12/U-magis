@@ -16,6 +16,12 @@ def biblio(request):
         listbook = []
         for index in range(1,5):
             book = Books.objects.get(id=index)
+            try:
+                bookemprunted = models.Empruntes.objects.get(idBook=index)
+                emprunted = 1
+            except:
+                emprunted = 0
+            print(emprunted)
             idBook = book.id
             cotation = book.cotation
             titre = book.titre
@@ -24,7 +30,8 @@ def biblio(request):
                     'cotation':cotation,
                     'titre':titre,
                     'auteur':auteur,
-                    'idBook':idBook
+                    'idBook':idBook,
+                    'emprunted':emprunted
                 }
             listbook.append(bookshow)
             

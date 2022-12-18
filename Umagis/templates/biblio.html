@@ -30,9 +30,14 @@
 
                         <label for="commentaire">commentaire</label>
                         <input type="text" name="commentaire"> <br>
+                        {% if bookshow.emprunted == 0 %}
+                                <input type="submit" name="clicked_button" value="Emprunter">
+                                <input type="submit" name="clicked_button" value="Reserver">
+                        {% else %}
+                                <input type="submit" name="clicked_button" value="Emprunter" disabled>
+                                <input type="submit" name="clicked_button" value="Reserver">
+                        {% endif %}
                         
-                        <input type="submit" name="clicked_button" value="Emprunter">
-                        <input type="submit" name="clicked_button" value="Reserver">
                         
                 </form>
                
