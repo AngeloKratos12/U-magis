@@ -152,6 +152,15 @@ def admin(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
+        if request.method == 'POST':
+            print(request.POST.getlist('cocher'))
+            for index in request.POST.getlist('cocher'):
+                index = int(index)
+                print(index)
+                livree = models.Empruntes.objects.get(idBook = index)
+                livree.delete()
+                print('suppression avec succes...')
+            
         books =models.Empruntes.objects.all()
         list_book = []
         for book in books:
@@ -165,6 +174,7 @@ def admin(request):
             categorie = dbbook.categorie
             
             book = {
+                'idBook': dbbook.id,
                 'number_book': number_book,
                 'cotation' : book.cotation,
                 'title' : book.titre,

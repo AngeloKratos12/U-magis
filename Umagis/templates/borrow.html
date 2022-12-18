@@ -10,6 +10,7 @@
 {% block clo7 %} User {% endblock %}
 {% block clo8 %} Date d'Emprunte {% endblock %}
 {% block clo9 %} Date de Livraison {% endblock %}
+{% block clo10 %} Livré {% endblock %}
 
 {% block valcol1 %} {{ index.number_book }} {% endblock %}
 {% block valcol2 %} {{ index.cotation}} {% endblock %}
@@ -20,3 +21,4 @@
 {% block valcol7 %} {{ index.user}} {% endblock %}
 {% block valcol8 %} {{ index.dateSortie}} {% endblock %}
 {% block valcol9 %} {{ index.dateEntre}} {% endblock %}
+{% block valcol10 %} <input type="checkbox" name="cocher" value={{ index.idBook }}> {% endblock %}
