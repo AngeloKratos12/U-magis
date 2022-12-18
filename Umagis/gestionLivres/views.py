@@ -50,7 +50,7 @@ def borrow(request):
             from datetime import datetime, timedelta
             
             idBook = request.POST['idBook']
-            cotation = request.POST['cotation']
+            #cotation = request.POST['cotation']
             commentaire = request.POST['commentaire']
     
             if 'clicked_button' in request.POST:
@@ -59,6 +59,7 @@ def borrow(request):
                 ##If the user clicked the borrow Button
                 if  request.POST['clicked_button'] == 'Emprunter':
                     book = Books.objects.get(id=idBook)
+                    cotation = book.cotation
                     categorie = book.categorie
                     titre = book.titre
                     dateSortie = datetime.now()
@@ -73,11 +74,12 @@ def borrow(request):
                 
                     addbook.save()
                     
-                ##If the user clicked the reservatio button
+                ##If the user clicked the reservation button
                 elif request.POST['clicked_button'] == 'Reserver':
                     book = Books.objects.get(id=idBook)
                     titre = book.titre
                     categorie = book.categorie
+                    cotation = book.cotation
                     bookEnCour = models.Empruntes.objects.get(id=idBook)
                     idUserEnCour = bookEnCour.idUser
                     
@@ -108,14 +110,25 @@ def reservation(request):
         list_book = []
         for book in books:
             userEnAttent = Users.objects.get(id=book.idUserEnAttent)
-            userEnCour = Users.objects.get(id=book.idUserEnCour)
+            dbbook = Books.objects.get(id=book.idBook)
+            try:
+                bookemprunte = models.Empruntes.objects.get(id=book.idBook)
+                iduserbookemprunte = bookemprunte.idUser
+                userEnCour = Users.objects.get(id=iduserbookemprunte)
+                userEnCour = str(userEnCour.name) + ' ' + str(userEnCour.user_name)
+            except:
+                userEnCour = None
+                pass
             book = {
-                'idBook': book.idBook,
                 'cotation' : book.cotation,
                 'title' : book.titre,
-                'UserEnAttent' : userEnAttent,
-                'UserEnCours' : userEnCour,
-            }
+                'UserEnAttent' : str(userEnAttent.name) + ' ' + str(userEnAttent.user_name),
+                'UserEnCours' : userEnCour ,
+                'number_book' : dbbook.numero,
+                'auteur' : dbbook.auteur,
+                'etat' : dbbook.etat,
+                'categorie' : dbbook.categorie,
+                }
             list_book.append(book)
 
         #print(book)

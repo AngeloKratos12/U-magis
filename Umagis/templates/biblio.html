@@ -20,8 +20,6 @@
                 <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
 
                         <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
-                        <input type="text" name="cotation" value={{ bookshow.cotation }} hidden>
-                        <input type="text" name="titre" value={{ bookshow.titre }} hidden>
                         
                         <ul>
                             <li>{{ bookshow.idBook }}</li>
