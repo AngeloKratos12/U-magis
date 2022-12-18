@@ -14,7 +14,7 @@ def biblio(request):
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
         listbook = []
-        for index in range(0,5):
+        for index in range(1,5):
             book = Books.objects.get(id=index)
             idBook = book.id
             cotation = book.cotation
@@ -104,10 +104,23 @@ def reservation(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
-        book =models.Reserves.objects.all()
+        books = models.Reserves.objects.all()
+        list_book = []
+        for book in books:
+            userEnAttent = Users.objects.get(id=book.idUserEnAttent)
+            userEnCour = Users.objects.get(id=book.idUserEnCour)
+            book = {
+                'idBook': book.idBook,
+                'cotation' : book.cotation,
+                'title' : book.titre,
+                'UserEnAttent' : userEnAttent,
+                'UserEnCours' : userEnCour,
+            }
+            list_book.append(book)
+
         #print(book)
         
-    return render(request, 'reservation.html', context={'book':book})
+    return render(request, 'reservation.html', context={'list_book':list_book})
     
 
 
@@ -119,10 +132,34 @@ def admin(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
-        book =models.Empruntes.objects.all()
-        #print(book)
+        books =models.Empruntes.objects.all()
+        list_book = []
+        for book in books:
+            #userEnAttent = Users.objects.get(id=book.idUserEnAttent)
+            user = Users.objects.get(id=book.idUser)
+            user = str(user.name) + ' ' + str(user.user_name)
+            dbbook = Books.objects.get(id=book.idBook)
+            auteur_book = dbbook.auteur
+            number_book = dbbook.numero
+            etat = dbbook.etat
+            categorie = dbbook.categorie
+            
+            book = {
+                'number_book': number_book,
+                'cotation' : book.cotation,
+                'title' : book.titre,
+                'auteur' : auteur_book,
+                'etat' : etat,
+                'categorie': categorie,
+                'user' : user,
+                'dateSortie' : book.dateSortie,
+                'dateEntre': book.dateEntre
+            }
+            list_book.append(book)
         
-    return render(request, 'borrow.html', context={'book':book})
+    return render(request, 'borrow.html', context={'list_book':list_book})
+
+
 
 def addBook(request):
     if 'logged_user_id' in request.session:

@@ -1,5 +1,6 @@
 {% extends "back_office.html" %}
 
+
 {% block clo1 %} N°Livre {% endblock %}
 {% block clo2 %} Cotation {% endblock %}
 {% block clo3 %} Livre {% endblock %}
@@ -10,14 +11,12 @@
 {% block clo8 %} Date d'Emprunte {% endblock %}
 {% block clo9 %} Date de Livraison {% endblock %}
 
-{% block valcol1 %}{{ index.idBook }} {% endblock %}
+{% block valcol1 %} {{ index.number_book }} {% endblock %}
 {% block valcol2 %} {{ index.cotation}} {% endblock %}
-{% block valcol3 %} {{ index.titre}} {% endblock %}
-{% block valcol4 %} {{ index.cotation}} {% endblock %}
-{% block valcol5 %} {{ index.cotation}} {% endblock %}
-{% block valcol6 %} {{ index.cotation}} {% endblock %}
-{% block valcol7 %} {{ index.idUser}} {% endblock %}
-{% block valcol8 %} {{ index.cotation}} {% endblock %}
-{% block valcol9 %} {{ index.cotation}} {% endblock %}
-
-
+{% block valcol3 %} {{ index.title}} {% endblock %}
+{% block valcol4 %} {{ index.auteur}} {% endblock %}
+{% block valcol5 %} {{ index.etat}} {% endblock %}
+{% block valcol6 %} {{ index.categorie}} {% endblock %}
+{% block valcol7 %} {{ index.user}} {% endblock %}
+{% block valcol8 %} {{ index.dateSortie}} {% endblock %}
+{% block valcol9 %} {{ index.dateEntre}} {% endblock %}
