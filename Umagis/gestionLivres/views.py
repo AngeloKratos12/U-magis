@@ -19,8 +19,11 @@ def biblio(request):
             try:
                 bookemprunted = models.Empruntes.objects.get(idBook=index)
                 emprunted = 1
+                disponibilite = bookemprunted.dateEntre
             except:
                 emprunted = 0
+                disponibilite = None
+                
             print(emprunted)
             idBook = book.id
             cotation = book.cotation
@@ -31,7 +34,8 @@ def biblio(request):
                     'titre':titre,
                     'auteur':auteur,
                     'idBook':idBook,
-                    'emprunted':emprunted
+                    'emprunted':emprunted,
+                    'disponible': disponibilite,
                 }
             listbook.append(bookshow)
             

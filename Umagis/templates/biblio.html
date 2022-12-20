@@ -14,36 +14,54 @@
             <h2> Bienvenue sur notre bibliotheque en ligne!! </h2> 
         </p>
 
-        <div>
+        <div style="background-color: #ddd; padding:20px">
 
                 {% for bookshow in listbook %}
-                <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
+                         <div>
+                                <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
 
-                        <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
-                        
-                        <ul>
-                            <li>{{ bookshow.idBook }}</li>
-                            <li>{{ bookshow.cotation }}</li>
-                            <li>{{ bookshow.titre }}</li>
-                            <li>Par {{ bookshow.auteur }}</li>
-                        </ul>
+                                        <table>
+                                                <tr>
+                                                        <td style="width: 500px;">
+                                                                <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
+                                                                <a href="http://#" style="color: black;">{{ bookshow.titre }}</a> <br>
+                                                                Par {{ bookshow.auteur }}
+                                                        </td>
+                                                        <td>
+                                                                {% if bookshow.emprunted == 0 %}
+                                                                        <input type="submit" name="clicked_button" value="Emprunter" style="background-color: cadetblue; border-radius: 12px;">
+                                                                        <input type="submit" name="clicked_button" value="Reserver" style="background-color: cornflowerblue; border-radius: 12px;">
+                                                                {% else %}
+                                                                        
+                                                                        <input type="submit" name="clicked_button" value="Emprunter" disabled>
+                                                                        <input type="submit" name="clicked_button" value="Reserver" style="background-color: cornflowerblue; border-radius: 12px;">
+                                                                        <tr>
+                                                                                <td> 
+                                                                                        <br>
+                                                                                        <i style="color: red;"> Ce livre est indisponible jusqu'à {{ bookshow.disponible }}</i>
+                                                                                </td>
+                                                                        </tr>
+                                                                {% endif %}
+                                                        </td>
+                                                </tr>
+                                                
+                                                <tfoot>
+                                                        <tr>
+                                                                <td>
+                                                                
+                                                                        <input type="text" name="commentaire" style="border:none; border-bottom: groove; text-align:center;" placeholder="Ajouter un commentaire..."> <br>
+                                                                </td>
+                                                        </tr>
+                                                </tfoot>
+                                        </table>
+                                
+                                </form>
+                        </div>
+                        <hr>
+                
+                        {% endfor %}
 
-                        <label for="commentaire">commentaire</label>
-                        <input type="text" name="commentaire"> <br>
-                        {% if bookshow.emprunted == 0 %}
-                                <input type="submit" name="clicked_button" value="Emprunter">
-                                <input type="submit" name="clicked_button" value="Reserver">
-                        {% else %}
-                                <input type="submit" name="clicked_button" value="Emprunter" disabled>
-                                <input type="submit" name="clicked_button" value="Reserver">
-                        {% endif %}
-                        
-                        
-                </form>
-               
-                {% endfor %}
-
-        </div>
+        </div> 
     
 
 {% endblock %}
