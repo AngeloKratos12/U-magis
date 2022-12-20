@@ -84,10 +84,11 @@ def borrow(request):
                 ##If the user clicked the reservation button
                 elif request.POST['clicked_button'] == 'Reserver':
                     book = Books.objects.get(id=idBook)
+                    print(idBook)
                     titre = book.titre
                     categorie = book.categorie
                     cotation = book.cotation
-                    bookEnCour = models.Empruntes.objects.get(id=idBook)
+                    bookEnCour = models.Empruntes.objects.get(idBook=idBook)
                     idUserEnCour = bookEnCour.idUser
                     
                     ##send the information to database
@@ -118,24 +119,30 @@ def reservation(request):
         for book in books:
             userEnAttent = Users.objects.get(id=book.idUserEnAttent)
             dbbook = Books.objects.get(id=book.idBook)
+            
             try:
-                bookemprunte = models.Empruntes.objects.get(id=book.idBook)
+                bookemprunte = models.Empruntes.objects.get(idBook=book.idBook)
                 iduserbookemprunte = bookemprunte.idUser
+                datelivraison = bookemprunte.dateEntre
                 userEnCour = Users.objects.get(id=iduserbookemprunte)
                 userEnCour = str(userEnCour.name) + ' ' + str(userEnCour.user_name)
+                
             except:
-                userEnCour = None
+                userEnCour = 'angelo'
                 pass
+            
             book = {
                 'cotation' : book.cotation,
                 'title' : book.titre,
                 'UserEnAttent' : str(userEnAttent.name) + ' ' + str(userEnAttent.user_name),
-                'UserEnCours' : userEnCour ,
+                'UserEnCours' : userEnCour,
                 'number_book' : dbbook.numero,
                 'auteur' : dbbook.auteur,
                 'etat' : dbbook.etat,
                 'categorie' : dbbook.categorie,
+                'dateLivraison':datelivraison,
                 }
+            
             list_book.append(book)
 
         #print(book)

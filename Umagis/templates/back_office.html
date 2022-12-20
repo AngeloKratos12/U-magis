@@ -5,6 +5,14 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Emprunte</title>
+    <style>
+    
+		th { background-color : #557CBA; }
+		/* Alternance de couleur sur les colonnes */
+		td:nth-child(even) { background-color : #CED4E5; }
+		td:nth-child(odd)  { background-color : #E8EBF5; }
+
+    </style>
 </head>
 <body>
     <ul style="list-style: none;">
@@ -35,7 +43,7 @@
 
     </ul>
     <form action="#" method="post"> {% csrf_token %}
-        <table border="1">
+        <table border="1" style="border-collapse: collapse; font-family: Courier New, monospace;">
             <tr>  
                     <th>{% block clo1 %}{% endblock %}</th>
                     <th>{% block clo2 %}{% endblock %}</th>
@@ -67,7 +75,6 @@
 
                     </tr>
                     
-
                 {% endfor %}
                     
 
