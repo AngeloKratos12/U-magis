@@ -14,6 +14,7 @@ def biblio(request):
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
         listbook = []
+        #print(request.GET.get('mat'))
         books = Books.objects.all()
         ##Si l'user fait de recherche
         
@@ -77,6 +78,40 @@ def biblio(request):
                 
             print(motsclef.lower())
         else:
+            categorie = request.GET.get('categorie')
+            print(categorie)
+            if categorie == 'all':
+                books = Books.objects.all()
+                print('ALL')
+            else:
+                if categorie != 'None':
+                    #print(categorie)
+                    books = Books.objects.filter(categorie__startswith = categorie)
+                    booksList2 = Books.objects.filter(categorie__icontains = categorie)
+                    for book in booksList2:
+                        try:
+                            bookemprunted = models.Empruntes.objects.get(idBook=book.id)
+                            emprunted = 1
+                            disponibilite = bookemprunted.dateEntre
+                        except:
+                            emprunted = 0
+                            disponibilite = None
+                            
+                        idBook = book.id
+                        cotation = book.cotation
+                        titre = book.titre
+                        auteur = book.auteur
+                        bookshow = {
+                                'cotation':cotation,
+                                'titre':titre,
+                                'auteur':auteur,
+                                'idBook':idBook,
+                                'emprunted':emprunted,
+                                'disponible': disponibilite,
+                            }
+                        listbook.append(bookshow)
+                    
+            
             for book in books:
                 try:
                     bookemprunted = models.Empruntes.objects.get(idBook=book.id)
@@ -99,7 +134,12 @@ def biblio(request):
                         'emprunted':emprunted,
                         'disponible': disponibilite,
                     }
-                listbook.append(bookshow)
+                if bookshow in listbook:
+                    pass
+                else:
+                    listbook.append(bookshow)
+            
+            
             
             return render(request, 'biblio.html', context={'listbook':listbook})
 
