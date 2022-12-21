@@ -11,9 +11,16 @@
 
         <p>
 
-            <h2> Bienvenue sur notre bibliotheque en ligne!! </h2> 
+            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Bienvenue sur notre bibliotheque en ligne!! </h2> 
         </p>
-
+        <div>   
+                
+                <form action="http://127.0.0.1:8000/biblio/" method="post"> {% csrf_token %}
+                        <input type="text" placeholder="Rechercher..." name="recherche">
+                        <label for="recherche"> <input type="submit"  value="Rechercher"> </label>
+                </form>
+                
+        </div>
         <div style="background-color: #ddd; padding:20px">
 
                 {% for bookshow in listbook %}
@@ -24,8 +31,8 @@
                                                 <tr>
                                                         <td style="width: 500px;">
                                                                 <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
-                                                                <a href="http://#" style="color: black;">{{ bookshow.titre }}</a> <br>
-                                                                Par {{ bookshow.auteur }}
+                                                                Livre: <a href="http://#" style="color: black; font-size:18px; font-family:Century Gothic,Verdana,sans-serif;">{{ bookshow.titre }}</a> <br>
+                                                                Par: {{ bookshow.auteur }}
                                                         </td>
                                                         <td>
                                                                 {% if bookshow.emprunted == 0 %}

@@ -14,32 +14,70 @@ def biblio(request):
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
         listbook = []
-        for index in range(1,5):
-            book = Books.objects.get(id=index)
-            try:
-                bookemprunted = models.Empruntes.objects.get(idBook=index)
-                emprunted = 1
-                disponibilite = bookemprunted.dateEntre
-            except:
-                emprunted = 0
-                disponibilite = None
-                
-            print(emprunted)
-            idBook = book.id
-            cotation = book.cotation
-            titre = book.titre
-            auteur = book.auteur
-            bookshow = {
-                    'cotation':cotation,
-                    'titre':titre,
-                    'auteur':auteur,
-                    'idBook':idBook,
-                    'emprunted':emprunted,
-                    'disponible': disponibilite,
-                }
-            listbook.append(bookshow)
+        books = Books.objects.all()
+        ##Si l'user fait de recherche
+        
+        if request.method == 'POST':
+            motsclef = request.POST['recherche'] 
             
-        return render(request, 'biblio.html', context={'listbook':listbook})
+            motsclef = motsclef.lower() ##Mettre le mots clef en miniscule
+            booksList = Books.objects.filter(titre__startswith = motsclef)
+            for book in booksList:
+                try:
+                    bookemprunted = models.Empruntes.objects.get(idBook=book.id)
+                    emprunted = 1
+                    disponibilite = bookemprunted.dateEntre
+                except:
+                    emprunted = 0
+                    disponibilite = None
+                    
+                idBook = book.id
+                cotation = book.cotation
+                titre = book.titre
+                auteur = book.auteur
+                bookshow = {
+                        'cotation':cotation,
+                        'titre':titre,
+                        'auteur':auteur,
+                        'idBook':idBook,
+                        'emprunted':emprunted,
+                        'disponible': disponibilite,
+                    }
+                listbook.append(bookshow)
+            
+            return render(request, 'biblio.html', context={'listbook':listbook})
+                
+                
+                
+                
+                
+            print(motsclef.lower())
+        else:
+            for book in books:
+                try:
+                    bookemprunted = models.Empruntes.objects.get(idBook=book.id)
+                    emprunted = 1
+                    disponibilite = bookemprunted.dateEntre
+                except:
+                    emprunted = 0
+                    disponibilite = None
+                
+            # print(emprunted)
+                idBook = book.id
+                cotation = book.cotation
+                titre = book.titre
+                auteur = book.auteur
+                bookshow = {
+                        'cotation':cotation,
+                        'titre':titre,
+                        'auteur':auteur,
+                        'idBook':idBook,
+                        'emprunted':emprunted,
+                        'disponible': disponibilite,
+                    }
+                listbook.append(bookshow)
+            
+            return render(request, 'biblio.html', context={'listbook':listbook})
 
     else:
         return render(request, 'login.html')
