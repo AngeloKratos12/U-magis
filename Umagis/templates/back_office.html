@@ -32,17 +32,18 @@
                 <option value="etudiant">Etudiant</option>
                 <option value="titre">Titre du livre</option>
                 <option value="cotation">Cotation</option>
+                <option value="numero">N°Livre</option>
                 <option value="auteur">Auteur</option>
 
             </select>
             <input type="text" name="rechercher">
             <label for="rechercher"><input type="submit" value="rechercher"></label>
-        </form>
+      
         
     </div> <br>
 
     </ul>
-    <form action="#" method="post"> {% csrf_token %}
+  
         <table border="1" style="border-collapse: collapse; font-family: Courier New, monospace;">
             <tr>  
                     <th>{% block clo1 %}{% endblock %}</th>

@@ -265,8 +265,12 @@ def admin(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
+        booklist =models.Empruntes.objects.all()
+        list_book = []
         if request.method == 'POST':
             print(request.POST.getlist('cocher'))
+            rechercher = request.POST['rechercher']
+            select = request.POST['select']
             for index in request.POST.getlist('cocher'):
                 index = int(index)
                 print(index)
@@ -274,9 +278,51 @@ def admin(request):
                 livree.delete()
                 print('suppression avec succes...')
             
-        books =models.Empruntes.objects.all()
-        list_book = []
-        for book in books:
+            
+            #print(select, rechercher)
+            if len(rechercher) != 0:
+                listId = []
+                if select == 'etudiant':
+                    etudiantname = Users.objects.filter(name__startswith = rechercher)
+                    etudiantuser_name = Users.objects.filter(user_name__startswith = rechercher)
+                    print(etudiantname, etudiantuser_name)
+                    
+                    if len(etudiantname) != 0 or len(etudiantuser_name) != 0:
+                        booklist = []
+                        for user in etudiantname:
+                            
+                            listId.append(user.id)
+                            print(listId)
+                          
+
+                        for user in etudiantuser_name:
+                            if user.id in listId:
+                                pass
+                            
+                            else:
+                                listId.append(user.id)
+
+                        for userId in listId:
+                            books = models.Empruntes.objects.filter(idUser=userId)
+                            booklist.extend(books)
+                    else:
+                        pass
+                
+                elif select == 'titre':
+                    booklist = models.Empruntes.objects.filter(titre__startswith = rechercher)
+                    
+                elif select == 'cotation':
+                    booklist = models.Empruntes.objects.filter(cotation__startswith = rechercher)
+                
+                elif select == 'numero':
+                    booklist = models.Empruntes.objects.filter(numero__startswith = rechercher)
+                
+                elif select == 'auteur':
+                    booklist = models.Empruntes.objects.filter(cotation__startswith = rechercher)
+            else:
+                pass
+        
+        for book in booklist:
             #userEnAttent = Users.objects.get(id=book.idUserEnAttent)
             user = Users.objects.get(id=book.idUser)
             user = str(user.name) + ' ' + str(user.user_name)
