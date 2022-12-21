@@ -11,6 +11,11 @@
             background-color: #f1f1f1;
             padding: 20px 10px;
             font-weight: bold;
+            position: fixed;
+            width: 100%;
+            margin-top: -25px;
+            font-family: cursive;
+
             }
 
             .header a {
@@ -70,7 +75,7 @@
             <div class="header-right">
                 {% block home %} {% endblock %}
                 
-                <a href="http://127.0.0.1:8000/biblio/">{% block bibliotheque %} {% endblock %}</a>
+                {% block bibliotheque %} {% endblock %}
                 <a href="http://127.0.0.1:8000/student/">{% block portfolio %} {% endblock %} </a>
                 <a href="http://127.0.0.1:8000/discu/">{% block discu %} {% endblock %} </a>
                  {% block connexion %} {% endblock %}

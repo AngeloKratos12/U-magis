@@ -1,27 +1,47 @@
 {% extends "baseheader.html" %}
 
 {% block title %} U-Magis {% endblock %}
-{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="color: rgb(236, 112, 11);"> <u>HOME</u> </a> {% endblock %}
+{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="text-decoration: none;"> <u>HOME</u> </a> {% endblock %}
 {% block portfolio %} THE STUDENTS {% endblock %} 
 {% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
-{% block bibliotheque %} BIBLIOTHEQUE {% endblock %}
+{% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/" style="background-color:rgb(250, 87, 22); color:white;"> BIBLIOTHEQUE </a>  {% endblock %}
 {% block discu %} DISCU {% endblock %}
 
 {% block body %} 
 
         <p>
 
-            <h2 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Bienvenue sur notre bibliotheque en ligne!! </h2> 
+            <h2 style="font-family:cursive; color:coral;font-size: 37px;"> Bienvenue sur notre bibliotheque en ligne! </h2> 
         </p>
-        <div>   
+        <div style="position: fixed; width:100%; background-color:white; padding-top:15px; margin-top:-10px;">   
                 
-                <form action="http://127.0.0.1:8000/biblio/" method="post"> {% csrf_token %}
-                        <input type="text" placeholder="Rechercher..." name="recherche">
-                        <label for="recherche"> <input type="submit"  value="Rechercher"> </label>
-                </form>
+                <table>
+                        <tr>
+                                <td>
+                                        <form action="http://127.0.0.1:8000/biblio/" method="post"> {% csrf_token %}
+                                                <input type="text" placeholder="Rechercher..." name="recherche">
+                                                <label for="recherche"> <input type="submit"  value="Rechercher"> </label>
+                                        </form>
+                                </td>
+                                <td>
+                                        <select name="liens" onchange="window.location.href=this.value" style="margin-top:-16px;">
+                                                <option value="#">Tous</option>
+                                                <option value="http://127.0.0.1:8000/biblio/">Mathématique</option>
+                                                <option value="http://www.bing.fr">Electronique et Electricité</option>
+                                                <option value="http://#">Algorithmie</option>
+                                                <option value="http://#">Marketing</option>
+                                                <option value="http://#">Gestion</option>
+                                                <option value="http://#">Sociologie</option>
+                                                <option value="http://#">Psychologie</option>
+                                                <option value="http://#">Magasine</option>
+                                        </select>
+                                </td>
+                        </tr>
+                </table>
+                
                 
         </div>
-        <div style="background-color: #ddd; padding:20px">
+        <div style="background-color: #ddd; padding:20px; margin-top:85px;">
 
                 {% for bookshow in listbook %}
                          <div>
