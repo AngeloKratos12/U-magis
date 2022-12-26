@@ -85,32 +85,34 @@ def biblio(request):
                 print('ALL')
             else:
                 if categorie != 'None':
-                    #print(categorie)
-                    books = Books.objects.filter(categorie__startswith = categorie)
-                    booksList2 = Books.objects.filter(categorie__icontains = categorie)
-                    for book in booksList2:
-                        try:
-                            bookemprunted = models.Empruntes.objects.get(idBook=book.id)
-                            emprunted = 1
-                            disponibilite = bookemprunted.dateEntre
-                        except:
-                            emprunted = 0
-                            disponibilite = None
-                            
-                        idBook = book.id
-                        cotation = book.cotation
-                        titre = book.titre
-                        auteur = book.auteur
-                        bookshow = {
-                                'cotation':cotation,
-                                'titre':titre,
-                                'auteur':auteur,
-                                'idBook':idBook,
-                                'emprunted':emprunted,
-                                'disponible': disponibilite,
-                            }
-                        listbook.append(bookshow)
-                    
+                    try:
+                        #print(categorie)
+                        books = Books.objects.filter(categorie__startswith = categorie)
+                        booksList2 = Books.objects.filter(categorie__icontains = categorie)
+                        for book in booksList2:
+                            try:
+                                bookemprunted = models.Empruntes.objects.get(idBook=book.id)
+                                emprunted = 1
+                                disponibilite = bookemprunted.dateEntre
+                            except:
+                                emprunted = 0
+                                disponibilite = None
+                                
+                            idBook = book.id
+                            cotation = book.cotation
+                            titre = book.titre
+                            auteur = book.auteur
+                            bookshow = {
+                                    'cotation':cotation,
+                                    'titre':titre,
+                                    'auteur':auteur,
+                                    'idBook':idBook,
+                                    'emprunted':emprunted,
+                                    'disponible': disponibilite,
+                                }
+                            listbook.append(bookshow)
+                    except:
+                        books = Books.objects.all()
             
             for book in books:
                 try:

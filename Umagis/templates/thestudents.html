@@ -1,0 +1,36 @@
+{% extends "baseheader.html" %}
+{% block title %} U-Magis {% endblock %}
+{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="text-decoration: none;"> <u>HOME</u> </a> {% endblock %}
+{% block portfolio %}  <a href="http://127.0.0.1:8000/student/" style="background-color:rgb(250, 87, 22); color:white;">THE STUDENTS </a> {% endblock %} 
+{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
+{% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/"> BIBLIOTHEQUE </a>  {% endblock %}
+{% block discu %} DISCU {% endblock %}
+
+
+{% block body %}
+<div>
+    <div style="text-align:center; padding-top:60px;">
+        <h2 style="font-family: cursive;">
+            THE STUDENTS 
+        </h2>
+        
+        <hr width="50%">
+    </div>
+    <div class="map_img">
+    
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1800 2000">
+
+            {% for contry in svg %}
+                <a  id={{ contry.id }} class="map" xlink:title={{ contry.id }} xlink:href="http://127.0.0.1:8000/student/madagascar/">
+                     <path class="path" title={{ contry.id }} d={{ contry.shape }}/>
+                </a>
+          
+            {% endfor %}
+        </svg>
+    
+    </div>
+</div>
+    
+       
+ 
+{% endblock %}
