@@ -5,29 +5,67 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>U-magis</title>
+   
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/meyawo.css' %}">
+    {% block static %}{% endblock %}
+  
+  
 
 </head>
-<body>
-    <header>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" style="background-color: #ffffff;">
+  
 
-        <div class="header">
-            <a href="#default" class="logo">U-magis</a>
-            <div class="header-right">
-                {% block home %} {% endblock %}
-                
-                {% block bibliotheque %} {% endblock %}
-                {% block portfolio %} {% endblock %}
-                <a href="http://127.0.0.1:8000/discu/">{% block discu %} {% endblock %} </a>
-                 {% block connexion %} {% endblock %}
-            </div>
-        </div>    
+       <nav class="custom-navbar" data-spy="affix" data-offset-top="20" style="background-color: #1e549f;">
+        <div class="container">
+            <a class="logo" href="#" style="color: #ffffff;">U-MAGIS</a>
+            <ul class="nav">
+                <li class="item">
+                    
+                    <a class="link" href="http://127.0.0.1:8000/home/">Home</a>
+                </li>
+                <li class="item">
+                    {% block biblio %}<a class="link" href="http://127.0.0.1:8000/biblio/">Bibliothèque</a>{% endblock %}
+                    
+                </li>
+                <li class="item">
+                    
+                    <a class="link" href="http://127.0.0.1:8000/student/">Portfolio</a>
+                </li>
+                <li class="item">
+                    {% block discu %}<a class="link" href="#testmonial">Discu</a>{% endblock %}
+                    
+                </li>
+                <li class="item">
+                    <a class="link" href="#blog">About Us</a>
+                </li>
+                <li class="item">
+                    {% block log %}<a class="link" href="http://127.0.0.1:8000/logout/">Log out</a>{% endblock %}
+                    
+                </li>
+               
+            </ul>
+            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </a>
+        </div>
+    </nav> 
 
-    </header>
+  
 
     {% block body %}{% endblock %}
-        
+         {% load static %}
+    <script src="{% static 'assets/vendors/jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'assets/vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="{% static 'assets/vendors/bootstrap/bootstrap.affix.js' %}"></script>
+
+    <!-- Meyawo js -->
+    <script src="{% static 'assets/js/meyawo.js' %}"></script>
 </body>
 </html>

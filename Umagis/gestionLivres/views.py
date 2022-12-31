@@ -70,7 +70,7 @@ def biblio(request):
                 listbook.append(bookshow)
             
             
-            return render(request, 'biblio.html', context={'listbook':listbook})
+            return render(request, 'test.html', context={'listbook':listbook})
                 
                 
                 
@@ -143,10 +143,10 @@ def biblio(request):
             
             
             
-            return render(request, 'biblio.html', context={'listbook':listbook})
+            return render(request, 'biblio.html', context={'listbook':listbook, 'nbr_book':len(listbook)})
 
     else:
-        return render(request, 'login.html')
+        return render(request, 'login2.html')
     
 
 
@@ -215,7 +215,7 @@ def borrow(request):
 
     #If user have not yet a compte
     else:
-        return render(request, 'login.html')
+        return render(request, 'login2.html')
 
 
 def reservation(request):
@@ -255,7 +255,9 @@ def reservation(request):
 
         #print(book)
         
-    return render(request, 'reservation.html', context={'list_book':list_book})
+        return render(request, 'reservation.html', context={'list_book':list_book})
+    else:
+        return render(request, 'login2.html')
     
 
 
@@ -366,5 +368,5 @@ def addBook(request):
 
         return render(request, 'addbook.html')
     else:
-        return render(request, 'login.html')
+        return render(request, 'login2.html')
     

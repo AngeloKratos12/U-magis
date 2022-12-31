@@ -33,7 +33,7 @@ def student(request):
             return render(request, 'thestudents.html', context={'svg':new_svg})
     
     else:
-        return render(request, 'login.html')
+        return render(request, 'student.html')
         
 def contry(request):
     '''

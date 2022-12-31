@@ -39,4 +39,3 @@ class AdminBibliotheque(models.Model):
     pass_word_hashed = models.CharField(max_length=15)
     contacte = models.CharField(max_length=25)
     image_path = models.CharField(max_length=50)
-

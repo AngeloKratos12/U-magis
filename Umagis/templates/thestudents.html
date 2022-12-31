@@ -1,36 +1,181 @@
 {% extends "baseheader.html" %}
 {% block title %} U-Magis {% endblock %}
-{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="text-decoration: none;"> <u>HOME</u> </a> {% endblock %}
-{% block portfolio %}  <a href="http://127.0.0.1:8000/student/" style="background-color:rgb(250, 87, 22); color:white;">THE STUDENTS </a> {% endblock %} 
-{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
-{% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/"> BIBLIOTHEQUE </a>  {% endblock %}
-{% block discu %} DISCU {% endblock %}
+{% block static %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar"
+    style="text-decoration: none;"> <u>HOME</u> </a> {% endblock %}
+{% block portfolio %} <a href="http://127.0.0.1:8000/student/"
+    style="background-color:rgb(250, 87, 22); color:white;">THE STUDENTS </a> {% endblock %}
+{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a> {% endblock %}
+{% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/"> BIBLIOTHEQUE </a> {% endblock %}
+{% block discu %} <a href="#" style="color: white;"> DISCU </a> {% endblock %}
 
 
 {% block body %}
-<div>
+<div class="container-fluid">
     <div style="text-align:center; padding-top:60px;">
-        <h2 style="font-family: cursive;">
-            THE STUDENTS 
-        </h2>
-        
+        <br>
+
         <hr width="50%">
     </div>
-    <div class="map_img">
-    
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1800 2000">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="map_img">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:amcharts="http://amcharts.com/ammap" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1800 2000">
 
-            {% for contry in svg %}
-                <a  id={{ contry.id }} class="map" xlink:title={{ contry.id }} xlink:href="http://127.0.0.1:8000/student/madagascar/">
-                     <path class="path" title={{ contry.id }} d={{ contry.shape }}/>
-                </a>
-          
-            {% endfor %}
-        </svg>
-    
-    </div>
-</div>
-    
-       
- 
-{% endblock %}
+                    {% for contry in svg %}
+                        <a id={{ contry.id }} class="map" xlink:title={{ contry.id }}
+                            xlink:href="http://127.0.0.1:8000/student/madagascar/">
+                            <path class="path" title={{ contry.id }} d={{ contry.shape }} style="fill: cornflowerblue; stroke:white; stroke-width:2px;"/>
+                        </a>
+
+                    {% endfor %}
+                    </svg>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div style="padding:8px;">
+                    <div class="input-group position-relative">
+                        <input type="text" name="recherche" class="form-control"
+                            placeholder="Enter Your Keywords" id="keywords">
+                    </div> <br>
+                    <div class="select-container">
+                        <select name="domaine" class="custom-select">
+                            <option value="">TOUS LES DOMAINES</option>
+                            <option value="">COMMUNICATION</option>
+                            <option value="">GENIE INDUSTRIEL</option>
+                            <option value="">SCIENCE NATURELLE</option>
+                            <option value="">INFORMATIQUE</option>
+                            <option value="">LETTRE</option>
+                            <option value="">SOCIAL</option>
+                            <option value="">MATH/PHYSIQUE</option>
+                            <option value="">TOURISME</option>
+                        </select>
+                    </div> <br>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="select-container">
+                                <select name="level" class="custom-select">
+                                    <option value="alllevel">Tous les Niveaux</option>
+                                    <option value="l1">Licence 1</option>
+                                    <option value="l2">Licence 2</option>
+                                    <option value="l3">Licence 3</option>
+                                    <option value="m1">Master</option>
+                                    <option value="m2">Master 2</option>
+                                </select>
+                            </div> 
+
+                        </div>
+                        <div class="col-6">
+                            <div class="select-container">
+                                <select name="profilpro" class="custom-select">
+                                    <option value="alllevel">Profil Pro</option>
+                                    <option value="l1">Etudiant</option>
+                                    <option value="l2">Stage</option>
+                                    <option value="l3">Professionnel</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        
+                    
+
+                    </div>
+                    
+                    <div class="col-md-6 col-lg-5 my-3">
+                        <input type="submit" class="btn btn-lg btn-block
+                            btn-light btn-custom" id="contact-submit"
+                            value="Search" style="background-color: cadetblue;">
+                    </div>
+                    <hr>
+                    <div class="page-content page-container" id="page-content">
+                        <div class="padding">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="list list-row block">
+                                        <div class="list-item" data-id="19">
+                                            <div class="row">
+                                                <a href="#">
+                                                    <div class="col-3">
+                                                    <a href="#" data-abc="true">
+                                                        <span class="w-48 avatar
+                                                            gd-primary"><img
+                                                                src="https://img.icons8.com/color/48/000000/administrator-male.png"
+                                                                alt="."></span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-9">
+                                                    <a href="#" class="item-author text-color" data-abc="true">
+                                                        MIHARIMANANA Angela
+                                                    </a>
+                                                    <div class="item-except text-muted text-sm h-1x" style="font-family: cursive;">
+                                                        L2 en Communicaton
+                                                        Médiatique</div>
+                                                </div>
+                                                </a>
+                                                
+                                            </div>
+                                            <hr>
+                                            <div class="list-item" data-id="7">
+                                                <div class="row">
+                                                    <div class="col-3">
+                                                        <a href="#"
+                                                            data-abc="true">
+                                                            <span class="w-48
+                                                                avatar
+                                                                gd-primary"><img
+                                                                    src="https://img.icons8.com/color/48/000000/administrator-male.png"
+                                                                    alt="."></span>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <a href="#"
+                                                            class="item-author
+                                                            text-color"
+                                                            data-abc="true">MIHARIMANANA
+                                                            Angelo</a>
+                                                        <div class="item-except
+                                                            text-muted text-sm
+                                                            h-1x">L2 en
+                                                            Electromécanique</div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+                <div style="font-family:cursive; position:fixed; bottom:0px;
+                    left:5px;">
+                    Selectionner un pays. <br>
+                    Vous pouvez trier votre recherche ici selon le domaine,
+                    niveau, ou même son nom.
+                </div> <br>
+
+            </div>
+
+
+
+            {% endblock %}

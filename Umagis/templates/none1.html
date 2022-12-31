@@ -1,0 +1,95 @@
+{% extends "baseheader.html" %}
+
+{% block title %} U-Magis {% endblock %}
+{% block home %}<a href="http://127.0.0.1:8000/home/" class="bar" style="text-decoration: none;"> <u>HOME</u> </a> {% endblock %}
+{% block portfolio %} <a href="http://127.0.0.1:8000/student/"> THE STUDENTS </a>  {% endblock %} 
+{% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a>  {% endblock %}
+{% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/" style="background-color:rgb(250, 87, 22); color:white;"> BIBLIOTHEQUE </a>  {% endblock %}
+{% block discu %} DISCU {% endblock %}
+
+{% block body %} 
+
+        <div style="text-align: center;">
+
+            <h2 style="font-family:cursive; color:coral;font-size: 37px;"> Bienvenue sur notre bibliotheque en ligne! </h2> 
+        </div>
+        <div style="position: fixed; width:100%; background-color:white; padding-top:15px; margin-top:-10px;">   
+                
+                <table>
+                        <tr>
+                                <td>
+                                        <form action="http://127.0.0.1:8000/biblio/" method="post"> {% csrf_token %}
+                                                <input type="text" placeholder="Rechercher..." name="recherche">
+                                                <label for="recherche"> <input type="submit"  value="Rechercher"> </label>
+                                        </form>
+                                </td>
+                                <td></td>
+                                <td>
+                                        <select name="liens" onchange="window.location.href=this.value" style="margin-top:-16px;">
+                                                <option value="http://127.0.0.1:8000/biblio/?categorie=all">Tous</option>
+                                                <option value="http://127.0.0.1:8000/biblio/">Mathématique</option>
+                                                <option value="http://www.bing.fr">Electronique et Electricité</option>
+                                                <option value="http://#">Algorithmie</option>
+                                                <option value="http://127.0.0.1:8000/biblio/?categorie=marketing">Marketing</option>
+                                                <option value="http://#">Gestion</option>
+                                                <option value="http://#">Sociologie</option>
+                                                <option value="http://#">Psychologie</option>
+                                                <option value="http://#">Magasine</option>
+                                        </select>
+                                </td>
+                        </tr>
+                </table>
+                
+                
+        </div>
+        <div style="background-color: #ddd; padding:20px; margin-top:85px;">
+
+                {% for bookshow in listbook %}
+                         <div>
+                                <form action="http://127.0.0.1:8000/biblio/borrow/" method="post"> {% csrf_token %}
+
+                                        <table>
+                                                <tr>
+                                                        <td style="width: 500px;">
+                                                                <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
+                                                                Livre: <a href="http://#" style="color: black; font-size:18px; font-family:Century Gothic,Verdana,sans-serif;">{{ bookshow.titre }}</a> <br>
+                                                                Par: {{ bookshow.auteur }}
+                                                        </td>
+                                                        <td>
+                                                                {% if bookshow.emprunted == 0 %}
+                                                                        <input type="submit" name="clicked_button" value="Emprunter" style="background-color: cadetblue; border-radius: 12px;">
+                                                                        <input type="submit" name="clicked_button" value="Reserver" style="background-color: cornflowerblue; border-radius: 12px;">
+                                                                {% else %}
+                                                                        
+                                                                        <input type="submit" name="clicked_button" value="Emprunter" disabled>
+                                                                        <input type="submit" name="clicked_button" value="Reserver" style="background-color: cornflowerblue; border-radius: 12px;">
+                                                                        <tr>
+                                                                                <td> 
+                                                                                        <br>
+                                                                                        <i style="color: red;"> Ce livre est indisponible jusqu'à {{ bookshow.disponible }}</i>
+                                                                                </td>
+                                                                        </tr>
+                                                                {% endif %}
+                                                        </td>
+                                                </tr>
+                                                
+                                                <tfoot>
+                                                        <tr>
+                                                                <td>
+                                                                
+                                                                        <input type="text" name="commentaire" style="border:none; border-bottom: groove; text-align:center;" placeholder="Ajouter un commentaire..."> <br>
+                                                                </td>
+                                                        </tr>
+                                                </tfoot>
+                                        </table>
+                                
+                                </form>
+                        </div>
+                        <hr>
+                
+                        {% endfor %}
+
+        </div> 
+    
+
+{% endblock %}

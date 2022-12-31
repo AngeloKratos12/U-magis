@@ -1,5 +1,11 @@
-{% extends "back_office.html" %}
+{% extends "table_admin.html" %}
 
+{% block title %} emprunts faits {% endblock  %}
+
+{% block bl1 %}<option value="http://127.0.0.1:8000/biblio/admin">EMPRUNTE</option>{% endblock %}
+{% block bl2 %}<option value="http://127.0.0.1:8000/biblio/reservation">RESERVATION</option>{% endblock %}
+{% block bl3 %}<option value="http://www.bing.fr">DELETE A BOOK</option>{% endblock %}
+{% block bl4 %}<option value="http://127.0.0.1:8000/biblio/admin/addbook">ADD A BOOK</option>{% endblock %}
 
 {% block clo1 %} N°Livre {% endblock %}
 {% block clo2 %} Cotation {% endblock %}

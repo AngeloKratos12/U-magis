@@ -16,12 +16,12 @@ def home2(request):
         return render(request, 'home2.html')
     
     else:
-        return render(request, 'login.html')
+        return render(request, 'home.html')
 
 def login(request):
     user = Users.objects.get(id=1)
     user = user.pass_word_hashed
-    return render(request, 'login.html')
+    return render(request, 'login2.html')
 
 
 def verify(request):
