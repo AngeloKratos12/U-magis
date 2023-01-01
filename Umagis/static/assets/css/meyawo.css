@@ -11720,11 +11720,11 @@ pre .code {
 }
 
 .custom-navbar.affix .nav .item .link {
-  color: #6c757d;
+  color: #ffffff;
 }
 
 .custom-navbar.affix .hamburger-inner, .custom-navbar.affix .hamburger-inner::before, .custom-navbar.affix .hamburger-inner::after {
-  background: #6c757d;
+  background: #ffffff;
 }
 
 @media (min-width: 768px) {
