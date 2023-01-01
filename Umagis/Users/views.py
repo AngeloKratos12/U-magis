@@ -45,6 +45,14 @@ def contry(request):
         
         return render(request, 'student.html')
 
+def portfolio(request):
+    if 'logged_user_id' in request.session:
+        logged_user_id = request.session['logged_user_id']
+        logged_user = Users.objects.get(id=logged_user_id)
+        
+        return render(request, 'portfolio.html')
+    else:
+        return render(request, 'portfolio.html')
 
 def student1(request):
     '''
