@@ -5,9 +5,48 @@ from datetime import datetime
 # Create your views here.
 
 def forum_home(request):
+    '''
+        Select all Answer and Forum!!
+    '''
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
         logged_user = Users.objects.get(id=logged_user_id)
+        
+        allforum = Forum.objects.all()
+        allanswer = Answer.objects.all()
+        
+        forum_list = []
+  
+        
+        for forum in allforum:
+            topic = forum.topic
+            idUser = forum.idUser
+            forum_name = forum.forum
+            date = forum.date
+            
+            dic_forum = {
+                'topic' : topic,
+                'idUser' : idUser,
+                'forum': forum_name,
+                'date' : date
+            }
+            
+            forum_list.append(dic_forum)
+        
+        answer_list = []
+        for answer in allanswer:
+            idtopic = answer.idtopic
+            idrepondeur = answer.idrepondeur
+            reponse = answer.reponse
+            date = answer.date
+            dic_answer = {
+                'idtopic' : idtopic,
+                'idrepondeur' : idrepondeur,
+                'reponse' : reponse,
+                'date' : date 
+            }
+            answer_list.append(dic_answer)
+            
         
         
         
