@@ -12,6 +12,7 @@ class Forum(models.Model):
     date = models.DateTimeField()
 
 
+
 class Answer(models.Model):
     '''
         tables des reponses
@@ -21,3 +22,13 @@ class Answer(models.Model):
     reponse = models.TextField()
     date = models.DateTimeField()
     
+    
+
+class AnswerAnswered(models.Model):
+    '''
+        Reponse à une autre reponse
+    '''
+    idoldreponse = models.IntegerField()
+    idrepondeur = models.IntegerField()
+    reponse = models.TextField()
+    date = models.DateTimeField()

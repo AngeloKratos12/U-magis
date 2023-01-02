@@ -23,29 +23,36 @@ def biblio(request):
             
             motsclef = motsclef.lower() ##Mettre le mots clef en miniscule
             booksList = Books.objects.filter(titre__startswith = motsclef)
-            booksList2 = Books.objects.filter(titre__icontains = motsclef)
-            for book in booksList2:
-                try:
-                    bookemprunted = models.Empruntes.objects.get(idBook=book.id)
-                    emprunted = 1
-                    disponibilite = bookemprunted.dateEntre
-                except:
-                    emprunted = 0
-                    disponibilite = None
-                    
-                idBook = book.id
-                cotation = book.cotation
-                titre = book.titre
-                auteur = book.auteur
-                bookshow = {
-                        'cotation':cotation,
-                        'titre':titre,
-                        'auteur':auteur,
-                        'idBook':idBook,
-                        'emprunted':emprunted,
-                        'disponible': disponibilite,
-                    }
-                listbook.append(bookshow)
+            print(len(motsclef))
+            
+            if len(motsclef) == 0:
+                pass
+            else:
+                booksList2 = Books.objects.filter(titre__icontains = motsclef)
+                
+                for book in booksList2:
+                    try:
+                        bookemprunted = models.Empruntes.objects.get(idBook=book.id)
+                        emprunted = 1
+                        disponibilite = bookemprunted.dateEntre
+                    except:
+                        emprunted = 0
+                        disponibilite = None
+                        
+                    idBook = book.id
+                    cotation = book.cotation
+                    titre = book.titre
+                    auteur = book.auteur
+                    bookshow = {
+                            'cotation':cotation,
+                            'titre':titre,
+                            'auteur':auteur,
+                            'idBook':idBook,
+                            'emprunted':emprunted,
+                            'disponible': disponibilite,
+                        }
+                    listbook.append(bookshow)
+                
             for book in booksList:
                 try:
                     bookemprunted = models.Empruntes.objects.get(idBook=book.id)
