@@ -1,4 +1,7 @@
 {% extends 'baseheader.html' %}
+{% block biblio %} <a class="link" href="http://127.0.0.1:8000/biblio/" style="color: #ffffff;">Bibliothèque</a>{% endblock %}
+{% block discu %}<a class="link" href="#testmonial"style="color: #ffffff;" >Discu</a>{% endblock %}
+{% block log %}<a class="link" href="http://127.0.0.1:8000/logout/" style="color: #ffffff;">Log out</a>{% endblock %}
   
     {% block static %}
         {% load static %}
@@ -80,20 +83,22 @@
                                         <input type="text" name="idBook" value={{ bookshow.idBook }} hidden>
                                         <h5 class="text-center text-md-left">Titre: {{ bookshow.titre }}</h5>
                                         <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                            
                                             <li class="mr-md-4">
-                                                <i class="zmdi  mr-2" style="font-size:medium;">Par: {{ bookshow.auteur }} </i> 
+                                                <i class="bi bi-journal-code" style="font-size:medium;">Par: {{ bookshow.auteur }}</i>
+                                                
                                             </li>
-                                            <li class="mr-md-4">
-                                                <i class="zmdi mr-2"></i> 
-                                            </li> <br>
+                                            
                                             
                                         </ul>
+                                        
                                             {% if bookshow.emprunted == 0 %}
                             
-                                                 <span></span>
+                                                 <span><input type="text" placeholder="...Add comment..." style="text-align: center; border:none; border-bottom:groove;"></span>
 
                                             {% else %}
-                                                <span class="zmdi zmdi-time mr-2" style="color: red;"> Ce livre est indisponible jusqu'à {{ bookshow.disponible }}</span>
+                                            
+                                                <span class="zmdi zmdi-time mr-2" style="color: red;"> indispo jusqu'à {{ bookshow.disponible }}</span>
 
                                             {% endif %}
 
@@ -109,10 +114,10 @@
                                         </div>
                                 {% else %}
                                         <div class="job-right my-4 flex-shrink-0">
-                                            <input type="submit" name="clicked_button" class="btn d-block w-100 d-sm-inline-block btn-light" value="Reserver" disabled>
+                                            <input type="submit" name="clicked_button" class="btn d-block w-100 d-sm-inline-block btn-light" value="Reserver" style="background-color: cornflowerblue;">
                                         </div>
                                         <div class="job-right my-4 flex-shrink-0">
-                                            <input type="submit" name="clicked_button" class="btn d-block w-100 d-sm-inline-block btn-light" value="Emprunter" style="background-color: cornflowerblue;">
+                                            <input type="submit" name="clicked_button" class="btn d-block w-100 d-sm-inline-block btn-light" value="Emprunter"  disabled>
                                         </div>
 
                                 {% endif %}

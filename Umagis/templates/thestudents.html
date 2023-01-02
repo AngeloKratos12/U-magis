@@ -10,7 +10,7 @@
     style="background-color:rgb(250, 87, 22); color:white;">THE STUDENTS </a> {% endblock %}
 {% block connexion %} <a href="http://127.0.0.1:8000/logout/"> LOG OUT </a> {% endblock %}
 {% block bibliotheque %} <a href="http://127.0.0.1:8000/biblio/"> BIBLIOTHEQUE </a> {% endblock %}
-{% block discu %} <a href="#" style="color: white;"> DISCU </a> {% endblock %}
+{% block discu %} <a href="#" style="color: white; text-decoration:none;"> Discu </a> {% endblock %}
 
 
 {% block body %}
@@ -123,7 +123,7 @@
                                             <div class="list-item" data-id="7">
                                                 <div class="row">
                                                     <div class="col-3">
-                                                        <a href="http://127.0.0.1:8000/student/me"
+                                                        <a href="#"
                                                             data-abc="true">
                                                             <span class="w-48
                                                                 avatar
@@ -133,14 +133,14 @@
                                                         </a>
                                                     </div>
                                                     <div class="col-9">
-                                                        <a href="#"
+                                                        <a href="http://127.0.0.1:8000/student/me"
                                                             class="item-author
                                                             text-color"
                                                             data-abc="true">MIHARIMANANA
                                                             Angelo</a>
                                                         <div class="item-except
                                                             text-muted text-sm
-                                                            h-1x">L2 en
+                                                            h-1x" style="font-family: cursive;">L2 en
                                                             Electromécanique</div>
                                                     </div>
                                                 </div>

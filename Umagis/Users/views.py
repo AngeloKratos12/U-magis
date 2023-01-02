@@ -45,6 +45,22 @@ def contry(request):
         
         return render(request, 'student.html')
 
+
+
+def makeportfolio(request):
+    '''
+        Editer le portfolio d'étudiant
+    '''
+    if 'logged_user_id' in request.session:
+        logged_user_id = request.session['logged_user_id']
+        logged_user = Users.objects.get(id=logged_user_id)
+        
+        if request.method == 'POST':
+            
+            render(request, 'portfolio.html')
+    
+    
+
 def portfolio(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']

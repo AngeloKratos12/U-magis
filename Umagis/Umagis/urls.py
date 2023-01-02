@@ -29,5 +29,6 @@ urlpatterns = [
     path('biblio/', include('gestionLivres.urls')),
     path('bibliotheque/', include('bibliotheque.urls')),
     path('student/', include('Users.urls')),
-
+    path('forum/', include('forum.urls')),
+    
 ]

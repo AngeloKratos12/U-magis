@@ -70,7 +70,7 @@ def biblio(request):
                 listbook.append(bookshow)
             
             
-            return render(request, 'test.html', context={'listbook':listbook})
+            return render(request, 'biblio.html', context={'listbook':listbook,'nbr_book':len(listbook)})
                 
                 
                 
@@ -118,7 +118,7 @@ def biblio(request):
                 try:
                     bookemprunted = models.Empruntes.objects.get(idBook=book.id)
                     emprunted = 1
-                    disponibilite = bookemprunted.dateEntre
+                    disponibilite = bookemprunted.dateEntre.strftime("%B %d, 20%y")
                 except:
                     emprunted = 0
                     disponibilite = None
@@ -166,7 +166,10 @@ def borrow(request):
             
             idBook = request.POST['idBook']
             #cotation = request.POST['cotation']
-            commentaire = request.POST['commentaire']
+            try:
+               commentaire = request.POST['commentaire']
+            except:
+                commentaire = '**'
     
             if 'clicked_button' in request.POST:
                 print(request.POST['clicked_button'])
@@ -236,7 +239,8 @@ def reservation(request):
                 userEnCour = str(userEnCour.name) + ' ' + str(userEnCour.user_name)
                 
             except:
-                userEnCour = 'angelo'
+                userEnCour = '**'
+                datelivraison = '**'
                 pass
             
             book = {
@@ -255,7 +259,7 @@ def reservation(request):
 
         #print(book)
         
-        return render(request, 'reservation.html', context={'list_book':list_book})
+        return render(request, 'reservation.html', context={'list_book':list_book,'nbr_book':len(list_book)})
     else:
         return render(request, 'login2.html')
     
