@@ -1,1 +1,161 @@
 {% extends 'baseheader.html' %}
+{% block biblio %} <a class="link" href="http://127.0.0.1:8000/biblio/" style="color: #ffffff;">Bibliothèque</a>{% endblock %}
+{% block discu %}<a class="link" href="http://127.0.0.1:8000/forum/"style="color: #ffffff;" >Forum</a>{% endblock %}
+{% block log %}<a class="link" href="http://127.0.0.1:8000/logout/" style="color: #ffffff;">Log out</a>{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        
+            <div class="col-lg-10 mx-auto mb-4">
+                <div class="section-title text-center ">
+                    <h3 class="top-c-sep" style="font-family: cursive;">BIBLIOTHEQUE</h3>
+                        <p>Lorem ipsum dolor sit detudzdae amet, rcquisc adipiscing elit. Aenean socada commodo
+                                ligaui egets dolor. Nullam quis ante tiam sit ame orci eget erovtiu faucid.</p>
+                </div>
+            </div>
+        </div>
+                <h1>FORUM</h1>
+        <div class="row">
+
+            <div class="col-md-8" >
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="input-group position-relative">
+                            <input type="text" name="recherche" class="form-control" placeholder="Enter Your Keywords" id="keywords">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 my-3">
+                        <div class="select-container">
+                            <select class="custom-select">
+                                <option selected="">Tous</option>
+                                <option value="1">Technologie</option>
+                                <option value="2">Environnement</option>
+                                <option value="3">Societé</option>
+                                <option value="3">Etudiant</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 my-3">
+                        <input type="submit" class="btn btn-md btn-block btn-light btn-custom" id="contact-submit" value="Search" style="background-color: rgb(122, 160, 161);">
+                    </div>
+                    <hr>
+                </div>
+                <div class="row"> <!-- begin forum-->
+                    
+                     <div class="col-sm-12">
+                        
+                        <div class="list list-row block">
+                            <div class="list-item" data-id="19">
+                                <div class="row">
+                                    <hr>
+                                
+                                        <div class="col-4">
+                                            <a href="#" data-abc="true">
+                                               
+                                                <span class="w-48 avatar gd-primary"><img src="https://img.icons8.com/color/48/000000/administrator-male.png" alt="."></span> <br>
+                                                <a href="http://127.0.0.1:8000/student/me" class="item-author text-color" data-abc="true" style="font-family: cursive; text-decoration:none;">Angela</a> 
+                                                
+                                                <div class="item-except text-muted text-sm h-1x" style="font-family: cursive;">
+                                                        L2 en Com Médiatique   
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col-8">
+                                            <h5><i class="bi bi-stack"></i>    Environnement    <i class="bi bi-stack"></i></h5>
+                                            <div class="item-except text-muted text-sm h-1x">
+                                                     <i class="bi bi-question-lg"></i>  Agir pour protéger l'environnement. Oui, mais par où commencer ?
+                                            </div>
+                                            
+                                        </div>
+                                         
+                                </div>
+                                <hr>
+                                <button value="repondre" onclick="afficherZoneTexte()">Repondre</button> 
+                                <a href="http://"><i class="bi bi-lightbulb-fill"></i>4 reponse(s)</a> 
+                                <a href="http://"><i class="bi bi-layers-fill"></i> 3 pièce(s) jointe(s)</a>
+                                <br> 
+                                            
+                                <script type="text/javascript">
+                                        function afficherZoneTexte() {
+                                        document.getElementById("zoneTexte").style.display = 'inline'; //Rendre la zone de texte visible.
+                                        document.getElementById("envoyer").style.display = 'inline';
+                                        document.getElementById("file").style.display = 'inline';
+                                        document.getElementById("plier").style.display = 'inline';
+                                        }
+                                        function pliertexte() {
+                                        document.getElementById("zoneTexte").style.display = 'none'; //Rendre la zone de texte visible.
+                                        document.getElementById("envoyer").style.display = 'none';
+                                        document.getElementById("file").style.display = 'none';
+                                        document.getElementById("plier").style.display = 'none';
+                                        }
+       
+                                </script>
+                                <textarea name=""  cols="30" rows="3" id="zoneTexte" style="display: none;" placeholder="ici votre texte..."></textarea> <br> 
+                                <input type="file" value="Envoyer un fichier" id="file" style="display:none;"> <br>
+                                <div class="col-md-6 col-lg-3 my-3">
+                                    <input type="submit" value="Envoyer" id="envoyer" class="btn btn-md btn-block btn-light btn-custom" style="display: none; background-color:cornflowerblue">
+                                    <button onclick="pliertexte()" style="display: none; background-color:darkgray" id="plier" class="btn btn-md btn-block btn-light btn-custom"><i class="bi bi-triangle-fill"></i></button>
+                                </div>
+                                    
+                               
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- end forum-->
+        
+            </div>
+            <div class="col-md-4">
+                <div class="container">
+                    <div class="row">
+                        <h5>STAT</h5>
+                        <a href="#"><i class="bi bi-hand-thumbs-down"></i> Question non repondue: <span>5</span></a> 
+                        <a href="#"><i class="bi bi-hand-thumbs-up"></i> Question répondue: <span>12</span></a> <br> 
+                        
+                        <h5>Les plus actif.</h5>
+                        <a href="#">
+                            <span class="w-25 avatar gd-primary"><img src="https://img.icons8.com/color/30/000000/administrator-male.png" alt="."></span>
+                            <span class="w-25 avatar gd-primary"><img src="https://img.icons8.com/color/30/000000/administrator-male.png" alt="."></span> 
+                            <span class="w-25 avatar gd-primary"><img src="https://img.icons8.com/color/30/000001/administrator-male.png" alt="."></span> 
+                        </a>
+
+                    </div> <br>
+                    <div class="row">
+                        <div class="row">
+                            <h5>SHARE DOCUMENT FOR ALL STUDENT</h5>
+                        </div>
+                        
+                        <div class="col-md-6 col-lg-6 my-3">
+                            <div class="select-container">
+                                <span>TYPE DOC:</span>
+                                <select class="custom-select">
+                                    <option selected="">Informatique</option>
+                                    <option value="1">Mathématique</option>
+                                    <option value="2">Psychologie</option>
+                                    <option value="3">Sociologie</option>
+                                    <option value="3">Marketing</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 my-3">
+                            <span>SELECT DOC.</span>
+                            <input type="file" name="fileshare">            
+                        </div>
+
+                        <input type="submit" value="Share" id="share" class="btn btn-md btn-block btn-light btn-custom" style=" background-color:cornflowerblue">
+                        
+
+
+                </div>
+                
+
+            </div>
+        </div>
+            
+</div>
+
+
+{% endblock %}

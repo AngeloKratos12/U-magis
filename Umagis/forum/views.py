@@ -55,7 +55,7 @@ def forum_home(request):
         return render(request, 'forum.html')
     
     else:
-        return render(request, 'home.html')
+        return render(request, 'login2.html')
 
 
 def addtopic(request):
