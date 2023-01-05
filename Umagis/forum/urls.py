@@ -4,7 +4,9 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.forum_home, name='student'),
-    #path('me/', views.portfolio, name='student1'),
+    path('', views.forum_home, name='forumhome'),
+    path("showtopic/", views.showtopic, name="showtopic"),
+    path('addtopic/', views.addtopic, name='addtopic'),
+    #path('addanswer/', views.addanswer, name='addanswer'),
 
 ]

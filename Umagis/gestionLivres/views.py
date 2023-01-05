@@ -93,7 +93,7 @@ def biblio(request):
             else:
                 if categorie != 'None':
                     try:
-                        #print(categorie)
+                        #print(categorie)answer_list.append(dic_forum)
                         books = Books.objects.filter(categorie__startswith = categorie)
                         booksList2 = Books.objects.filter(categorie__icontains = categorie)
                         for book in booksList2:
