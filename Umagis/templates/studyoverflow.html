@@ -1,0 +1,85 @@
+{% extends 'baseheader.html' %}
+
+{% block body %}
+<div class="container" style="padding-top: 100px;">
+    <h1>Study overflow</h1>
+    <div class="row">
+        <div class="col-md-6 col-lg-4 my-3">
+            <div class="input-group position-relative">
+                <input type="text" name="recherche" class="form-control" placeholder="Enter Your Keywords" id="keywords">
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 my-3">
+            <div class="select-container">
+                <select class="custom-select">
+                    <option selected="">Tous</option>
+                    <option value="1">Technologie</option>
+                    <option value="2">Environnement</option>
+                    <option value="3">Societé</option>
+                    <option value="3">Etudiant</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3 my-3">
+            <input type="submit" class="btn btn-md btn-block btn-light btn-custom" id="contact-submit" value="Search" style="background-color: rgb(122, 160, 161);">
+        </div>
+        <div class="col-md-6 col-lg-3 my-3">
+            <a href="#about" class="btn btn-outline-primary">Partager un document</a>
+        </div>
+        <div class="col-md-6 col-lg-3 my-3">
+            <button type="button" class="btn btn-outline-success">ASK Question</button>
+        </div>
+        
+        
+        <hr>
+        <span>nombre de topic: {{ nbr_forum }}</span>
+    </div>
+    <div class="row" style="padding-bottom: 25px;"> <!-- begin forum-->
+                    
+        <div class="col-sm-12">
+           
+           <div class="list list-row block">
+               <div class="list-item" data-id="19">
+                   <div class="row">
+                       <hr>
+                   
+                           <div class="col-4">
+                               <a href="#" data-abc="true">
+                                  
+                                   <span class="w-48 avatar gd-primary"><img src="https://img.icons8.com/color/48/000000/administrator-male.png" alt="."></span> <br>
+                                   <a href="http://127.0.0.1:8000/student/me" class="item-author text-color" data-abc="true" style="font-family: cursive; text-decoration:none;">Angela</a> 
+                                   
+                                   <div class="item-except text-muted text-sm h-1x" style="font-family: cursive;">
+                                           L2 en Com Médiatique   
+                                   </div>
+                               </a>
+                           </div>
+                           <div class="col-8">
+                               <h5><i class="bi bi-stack"></i>    {{ topic.forum }}    <i class="bi bi-stack"></i></h5>
+                               <div class="item-except text-muted text-sm h-1x">
+                                        <i class="bi bi-question-lg"></i>  <a href="http://">{{ topic.topic }}</a> <br>
+                                        <span style="font-family: cursive;">{{topic.date}}</span>
+                               </div>
+                               
+                           </div>
+                            
+                   </div>
+                   <hr>
+                   <form action="http://127.0.0.1:8000/forum/showtopic/" method="post"> {% csrf_token %}
+                       
+                       <input type="text" value={{ topic.id }}  name="idtopic" hidden>
+                       <button value="repondre"  class="btn btn-info">Repondre</button> 
+                       <button class="btn btn-info"><i class="bi bi-lightbulb-fill"></i>{{ topic.nbr_answer }} reponse(s)</button> 
+                       
+                       <br>
+                   </form> 
+           
+               </div>
+           </div>
+       </div>
+
+   </div> <!-- end forum--> 
+
+</div>
+
+{% endblock %}

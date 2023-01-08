@@ -23,7 +23,7 @@ def biblio(request):
             
             motsclef = motsclef.lower() ##Mettre le mots clef en miniscule
             booksList = Books.objects.filter(titre__startswith = motsclef)
-            print(len(motsclef))
+            #print(len(motsclef))
             
             if len(motsclef) == 0:
                 pass

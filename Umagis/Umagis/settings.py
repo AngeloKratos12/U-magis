@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Users',
     'gestionLivres',
     'forum',
+    'studyoverflow',
 ]
 
 MIDDLEWARE = [

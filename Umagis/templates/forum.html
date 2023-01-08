@@ -34,9 +34,10 @@
                     </div>
                     
                     <hr>
+                    <span>nombre de topic: {{ nbr_forum }}</span>
                 </div>
                 {% for topic in forum_list %}
-                <div class="row"> <!-- begin forum-->
+                <div class="row" style="padding-bottom: 25px;"> <!-- begin forum-->
                     
                      <div class="col-sm-12">
                         
@@ -70,25 +71,13 @@
                                 <form action="http://127.0.0.1:8000/forum/showtopic/" method="post"> {% csrf_token %}
                                     
                                     <input type="text" value={{ topic.id }}  name="idtopic" hidden>
-                                    <button value="repondre" onclick="afficherZoneTexte()" style="background-color: cornflowerblue; color:#ffffff">Repondre</button> 
-                                    <a href="http://"><i class="bi bi-lightbulb-fill"></i>4 reponse(s)</a> 
-                                    <a href="http://"><i class="bi bi-layers-fill"></i> 3 pièce(s) jointe(s)</a>
+                                    <button value="repondre"  class="btn btn-info">Repondre</button> 
+                                    <button class="btn btn-info"><i class="bi bi-lightbulb-fill"></i>{{ topic.nbr_answer }} reponse(s)</button> 
+                                    
                                     <br>
                                 </form> 
                                             
                                 <script type="text/javascript">
-                                        function afficherZoneTexte() {
-                                        document.getElementById("zoneTexte").style.display = 'inline'; //Rendre la zone de texte visible.
-                                        document.getElementById("envoyer").style.display = 'inline';
-                                        document.getElementById("file").style.display = 'inline';
-                                        document.getElementById("plier").style.display = 'inline';
-                                        }
-                                        function pliertexte() {
-                                        document.getElementById("zoneTexte").style.display = 'none'; //Rendre la zone de texte visible.
-                                        document.getElementById("envoyer").style.display = 'none';
-                                        document.getElementById("file").style.display = 'none';
-                                        document.getElementById("plier").style.display = 'none';
-                                        }
                                         
                                         function addtopic() {
                                                     //Rendre la zone de texte visible.
@@ -105,10 +94,10 @@
                         </div>
                     </div>
 
-                </div> <!-- end forum-->
-                {% endfor %}
+                </div> <!-- end forum--> 
+                {% endfor %} 
 
-            </div>
+            </div> <br> <br>
             <div class="col-md-1">
 
             </div>
@@ -178,7 +167,10 @@
                         </div>
                         <div class="col-md-6 col-lg-6 my-3">
                             <span>SELECT DOC.</span>
-                            <input type="file" name="fileshare">            
+                            <div class="input-group mb-4">
+                                <input type="file" class="form-control" id="inputGroupFile02">
+                                
+                              </div>
                         </div>
 
                         <input type="submit" value="Share" id="share" class="btn btn-md btn-block btn-light btn-custom" style=" background-color:cornflowerblue">

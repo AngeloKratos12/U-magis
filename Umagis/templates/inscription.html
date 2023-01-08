@@ -1,0 +1,112 @@
+{% extends 'baseheader.html' %}
+
+{% block body %}
+    <div class="container" style="padding-top: 120px;">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" placeholder="Name" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                </div>
+
+            </div>
+
+        </div> <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="date" class="form-control"  aria-label="Date_de_naissance" aria-describedby="addon-wrapping">
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Antananarivo</option>
+                    <option value="1">Antsiranana</option>
+                    <option value="2">Mahajanga</option>
+                    
+                </select>
+
+            </div>
+            
+
+        </div> <br>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>ETS</option>
+                    <option value="1">SAMIS-ESIC</option>
+                    <option value="2">INFORMATIQUE</option>
+                    
+                </select>
+
+            </div>
+            <div class="col-md-4">
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Licence 1</option>
+                    <option value="1">Licence 2</option>
+                    <option value="2">Licence 3</option>
+                    <option value="3">Master 1</option>
+                    <option value="3">Master 2</option>
+                </select>
+
+            </div>
+
+        </div> <br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">N°Mat</span>
+                    <input type="text" class="form-control"  aria-label="matricule" aria-describedby="addon-wrapping">
+                </div>
+                
+            </div> 
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">e-mail</span>
+                    <input type="email" class="form-control"  aria-label="E-mail" aria-describedby="addon-wrapping">
+                </div>
+                
+                
+            </div>
+
+        </div> <br>
+
+        <div class="row">
+    
+            <div class="col-md-4">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Phone</span>
+                    <input type="text" class="form-control"  aria-label="tel" aria-describedby="addon-wrapping">
+                </div>
+                
+            </div>
+
+        </div> <br>
+        <div class="row">
+            <div class="col-md-4">
+                <span class="input-group-text" id="addon-wrapping">Your photo</span>
+                <input type="file" class="form-control"  aria-label="" aria-describedby="addon-wrapping" value="file">
+
+            </div> 
+            <div class="col-md-4">
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Envoyer</button>
+                  </div>
+            </div>
+
+
+        </div>
+        
+      
+
+    </div>
+
+{% endblock %}

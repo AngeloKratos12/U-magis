@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('home/', views.home2, name='home2'),
+    path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('acceuil/', views.verify, name='verify'),
@@ -30,5 +31,6 @@ urlpatterns = [
     path('bibliotheque/', include('bibliotheque.urls')),
     path('student/', include('Users.urls')),
     path('forum/', include('forum.urls')),
+    path('studyoverflow/', include('studyoverflow.urls')),
     
 ]

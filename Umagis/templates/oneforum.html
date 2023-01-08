@@ -1,4 +1,8 @@
 {% extends 'baseheader.html' %}
+{% block static %}
+        {% load static %}
+        <script type="text/javascript" src="{% static 'editor/ed.js' %}"></script>     
+{% endblock %}
 {% block biblio %} <a class="link" href="http://127.0.0.1:8000/biblio/" style="color: #ffffff;">Bibliothèque</a>{% endblock %}
 {% block discu %}<a class="link" href="http://127.0.0.1:8000/forum/"style="color: #ffffff;" >Forum</a>{% endblock %}
 {% block log %}<a class="link" href="http://127.0.0.1:8000/logout/" style="color: #ffffff;">Log out</a>{% endblock %}
@@ -7,13 +11,56 @@
 
         <div class="container" style="padding-top:120px">
                 <div class="row">
-                        <h2 style="text-align: center;">{{topic}}</h2>
+                        <h2>{{topic}}</h2>
                 </div>
                 <div class="row">
-                        <div style="text-align: center;">
+                        <div class="container">
                                 {% for i in answer %}
-                                        {{i.reponse}}
+                                <div class="row" style="border: groove; padding: 15px;">
+                                        <div class="col-md-2" style=" text-align: center; padding-top: 15px;">
+                                                <span class="w-48 avatar gd-primary">
+                                                        <img src="https://img.icons8.com/color/48/000000/administrator-male.png" alt=".">
+                                                </span> <br> <br>
+                                                <a href="http://"><span>{{ i.user }}</span> </a> <br>
+                                                <span>{{ i.classe }}</span> <br>
+                                                
+                                        </div>
+                                        <div class="col-md-10">
+                                                <div class="row">
+                                                        <h6 style="text-align: end;">{{i.date}}</h6>
+                                                        
+                                                </div>
+                                                <div class="row border border-dark" style="height: max-content; margin-left: 10px; background-color: white; padding: 15px; border: groove;">
+                                                        {{i.answer}} 
+                                                </div> <br>
+                                                <div class="row">
+                                                        <span style="text-align: end;"><input type="submit" value="repondre"></span>
+                                                </div>
+                                                
+                                        </div>
+                                        
+                                </div> <br> <br>
+                                       
                                 {% endfor %}
+                        </div>
+                        
+                </div>
+                <div class="row border border-dark" style=" padding-top: 20px;">
+                        <div class="text-justify">
+                                <form name="form1" method="post" action="http://127.0.0.1:8000/forum/showtopic/"> {% csrf_token %}
+                                        <input type="text" name="idtopic" value={{ idtopic }} hidden> 
+                                        <p> 
+                                          <script>edToolbar('mytxtarea'); </script>
+                                          <textarea name="reponse" class="form-control" id="mytxtarea"   rows="10" placeholder="your text here"></textarea>
+                                              
+                                        </p>
+                                        
+                                        <p>
+                                          <input type="submit" name="Submit" value="Envoyer">
+                                        </p>
+                                      </form>
+                                      <p>&nbsp; </p>
+                                      
                         </div>
                         
                 </div>

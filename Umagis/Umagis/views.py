@@ -8,7 +8,15 @@ def home(request):
     user = user.contacte
     return render(request, 'home.html')
 
-
+def register(request):
+    if 'logged_user_id' in request.session:
+        logged_user_id = request.session['logged_user_id']
+        logged_user = Users.objects.get(id=logged_user_id)
+        return render(request, 'inscription.html')
+    
+    else:
+        return render(request, 'login2.html')
+    
 def home2(request):
     if 'logged_user_id' in request.session:
         logged_user_id = request.session['logged_user_id']
