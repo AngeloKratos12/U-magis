@@ -1,0 +1,59 @@
+{% extends 'baseheader.html' %}
+{% block static %}
+        {% load static %}
+        <script type="text/javascript" src="{% static 'editor/ed.js' %}"></script>     
+{% endblock %}
+{% block biblio %} <a class="link" href="http://127.0.0.1:8000/biblio/" style="color: #ffffff;">Bibliothèque</a>{% endblock %}
+{% block discu %}<a class="link" href="http://127.0.0.1:8000/forum/"style="color: #ffffff;" >Forum</a>{% endblock %}
+{% block log %}<a class="link" href="http://127.0.0.1:8000/logout/" style="color: #ffffff;">Log out</a>{% endblock %}
+
+{% block body %} 
+
+<div class="container" style="padding-top: 130px;">
+    <h2><a href="http://127.0.0.1:8000/studyoverflow/"><i class="bi bi-arrow-left-circle-fill"></i></a></h2>
+    <h2>ASK A QUESTION!!</h2> <br>
+    <div class="row">
+        <form name="form1" method="post" action="http://127.0.0.1:8000/studyoverflow/ask/"> {% csrf_token %}
+            <span class="text-secondary"><i class="bi bi-arrow-return-right"> Vous pouvez remplir le schamp ci-dessous par la question que vous voulez posez aux autre étudiants!</i></span>
+        <div class="col-md-8">
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bank"></i></span>
+                <input type="text" class="form-control" placeholder="Ecrire ici votre question!!" name="question" aria-describedby="addon-wrapping" required="required">
+            </div>
+
+        </div> <br> <br>
+        <span class="text-secondary"><i class="bi bi-arrow-return-right"> Citez dans le schamp ci-dessous de quoi parle votre question(exemple: environnement, dechet, recyclage) au moins en trois mots!! </i></span>
+        <div class="col-md-8">
+            <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-bank"></i></span>
+                <input type="text" class="form-control" placeholder="De quoi parle votre question (EX: Psychologie, argent,...)" name="about" aria-describedby="addon-wrapping" required="required">
+            </div>
+
+        </div>
+
+    </div> <br>
+
+
+    <div style=" padding-top: 20px;">
+        <span class="text-secondary"><i class="bi bi-arrow-return-right"> Expliquez ou bien détaillez aux étudiant votre problème dans le schamp ci-dessous!!</i></span> 
+        <div class="text-justify">
+                        
+                        <p> 
+                          <script>edToolbar('mytxtarea'); </script>
+                          <textarea name="detail" class="form-control" id="mytxtarea"   rows="10" placeholder="Détail ou support de votre question!!"></textarea>
+                              
+                        </p>
+                        
+                        <p>
+                          <input type="submit" name="Submit" class="btn btn-outline-success" value="Envoyer">
+                        </p>
+                      </form>
+                      <p>&nbsp; </p>
+                      
+        </div>
+        
+    </div>
+
+</div>
+
+{% endblock %}

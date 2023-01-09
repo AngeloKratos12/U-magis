@@ -2,11 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-class Forum(models.Model):
+class Question(models.Model):
     '''
         Table des topic 
     '''
-    topic = models.CharField(max_length=200)
+    question = models.CharField(max_length=500)
     idUser = models.IntegerField()
-    forum = models.CharField(max_length=20)
+    about = models.CharField(max_length=200)
+    detail = models.TextField()
     date = models.DateTimeField()

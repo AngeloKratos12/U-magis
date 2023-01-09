@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
 
-    path('', views.home, name='books'),
+    path('', views.home, name='std'),
+    path('ask/', views.ask, name='ask'),
     
 
 ]

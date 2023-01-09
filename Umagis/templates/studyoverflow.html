@@ -27,13 +27,14 @@
             <a href="#about" class="btn btn-outline-primary">Partager un document</a>
         </div>
         <div class="col-md-6 col-lg-3 my-3">
-            <button type="button" class="btn btn-outline-success">ASK Question</button>
+            <a href="http://127.0.0.1:8000/studyoverflow/ask/" class="btn btn-outline-success">ASK Question</a>
         </div>
         
         
         <hr>
         <span>nombre de topic: {{ nbr_forum }}</span>
     </div>
+    {% for question in questions %}
     <div class="row" style="padding-bottom: 25px;"> <!-- begin forum-->
                     
         <div class="col-sm-12">
@@ -47,18 +48,18 @@
                                <a href="#" data-abc="true">
                                   
                                    <span class="w-48 avatar gd-primary"><img src="https://img.icons8.com/color/48/000000/administrator-male.png" alt="."></span> <br>
-                                   <a href="http://127.0.0.1:8000/student/me" class="item-author text-color" data-abc="true" style="font-family: cursive; text-decoration:none;">Angela</a> 
+                                   <a href="http://127.0.0.1:8000/student/me" class="item-author text-color" data-abc="true" style="font-family: cursive; text-decoration:none;">{{ question.user }}</a> 
                                    
                                    <div class="item-except text-muted text-sm h-1x" style="font-family: cursive;">
-                                           L2 en Com Médiatique   
+                                           {{ question.user_class }}   
                                    </div>
                                </a>
                            </div>
                            <div class="col-8">
-                               <h5><i class="bi bi-stack"></i>    {{ topic.forum }}    <i class="bi bi-stack"></i></h5>
+                               <h5><i class="bi bi-stack"></i>    {{ question.about }}    <i class="bi bi-stack"></i></h5>
                                <div class="item-except text-muted text-sm h-1x">
-                                        <i class="bi bi-question-lg"></i>  <a href="http://">{{ topic.topic }}</a> <br>
-                                        <span style="font-family: cursive;">{{topic.date}}</span>
+                                        <i class="bi bi-question-lg"></i>  <a href="http://">{{ question.question }}</a> <br>
+                                        <span style="font-family: cursive;">{{question.date}}</span>
                                </div>
                                
                            </div>
@@ -79,6 +80,7 @@
        </div>
 
    </div> <!-- end forum--> 
+   {% endfor %}
 
 </div>
 
